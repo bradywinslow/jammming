@@ -2,9 +2,15 @@ import Header from './components/Header.js';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-    </div>
+    <body>
+      <header>
+        <Header />
+      </header>
+    
+      <main>
+
+      </main>
+    </body>
   );
 }
 
