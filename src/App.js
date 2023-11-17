@@ -1,4 +1,5 @@
 import Header from './components/Header.js';
+import SearchBar from './components/SearchBar.js';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       </header>
     
       <main>
-
+        <SearchBar />
       </main>
     </body>
   );
