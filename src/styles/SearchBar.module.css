@@ -11,6 +11,23 @@
 }
 
 .searchInput {
-    height: 5rem;
-    width: 25rem;
+    height: 4.5rem;
+    width: 20rem;
+    font-size: 2rem;
+    border-radius: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+button {
+    height: 2.75rem;
+    width: 6.5rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+    color: white;
+    background-color: rgb(15, 6, 44);
+}
+
+button:hover {
+    background-color: rgb(139, 82, 213);
 }

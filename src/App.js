@@ -1,5 +1,5 @@
-import Header from './components/Header.js';
-import SearchBar from './components/SearchBar.js';
+import Header from './components/Header.jsx';
+import SearchBar from './components/SearchBar.jsx';
 
 function App() {
   return (
