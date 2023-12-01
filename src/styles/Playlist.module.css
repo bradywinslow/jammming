@@ -1,0 +1,37 @@
+.playlistContainer {
+    height: 95vh;
+    width: 30rem;
+    background-color: rgb(15, 6, 44);
+    color: white;
+    margin: 3rem;
+    text-align: center;
+    opacity: 0.9;
+}
+
+.playlistContainer h2 {
+    padding: 1.25rem 0;
+}
+
+.playlistInput {
+    width: 80%;
+    background-color:rgb(15, 6, 44);
+    color: white;
+    border: 0;
+    border-bottom: solid thin white;
+    outline: none;
+    height: 4.5rem;
+    font-size: 2rem;
+    padding: 0 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.saveToSpotifyButton {
+    height: 2.75rem;
+    width: 10.5rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+    color: white;
+    background-color: rgb(139, 82, 213);
+    border: 0;
+}

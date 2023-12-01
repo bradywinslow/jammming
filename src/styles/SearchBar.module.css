@@ -14,9 +14,11 @@
     height: 4.5rem;
     width: 20rem;
     font-size: 2rem;
+    border: 0;
     border-radius: 1rem;
     padding: 0 1rem;
     text-align: center;
+    outline: none;
 }
 
 button {
@@ -26,6 +28,7 @@ button {
     font-size: 1.25rem;
     color: white;
     background-color: rgb(15, 6, 44);
+    border: 0;
 }
 
 button:hover {

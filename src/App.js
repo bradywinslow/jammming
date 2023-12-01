@@ -1,7 +1,8 @@
 import Header from './components/Header.jsx';
 import SearchBar from './components/SearchBar.jsx';
+import Main from './components/Main.jsx';
 
-function App() {
+export default function App() {
   return (
     <body>
       <header>
@@ -10,9 +11,8 @@ function App() {
     
       <main>
         <SearchBar />
+        <Main />
       </main>
     </body>
   );
 }
-
-export default App;
