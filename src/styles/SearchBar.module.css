@@ -28,7 +28,6 @@ button {
     font-size: 1.25rem;
     color: white;
     background-color: rgb(15, 6, 44);
-    border: 0;
 }
 
 button:hover {
