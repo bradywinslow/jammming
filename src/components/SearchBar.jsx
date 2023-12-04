@@ -7,7 +7,7 @@ export default function SearchBar() {
             <form className={styles.searchContainer}>
                 <input className={styles.searchInput}></input>
             </form>
-            <button>Search</button>
+            <button className={styles.searchButton}>Search</button>
         </search>
     )
 }

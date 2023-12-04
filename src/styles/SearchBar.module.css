@@ -21,7 +21,7 @@
     outline: none;
 }
 
-button {
+.searchButton {
     height: 2.75rem;
     width: 6.5rem;
     border-radius: 1rem;
@@ -30,6 +30,6 @@ button {
     background-color: rgb(15, 6, 44);
 }
 
-button:hover {
+.searchButton:hover {
     background-color: rgb(139, 82, 213);
 }

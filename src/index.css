@@ -8,4 +8,5 @@ body {
     url('./drums.jpg');
   background-size: cover;
   position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
