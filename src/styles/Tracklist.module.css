@@ -1,4 +1,4 @@
-.trackContainer {
+.tracklistContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -10,11 +10,11 @@
     outline: none;
     padding: 0 1rem;
     text-align: center;
-    margin: 0 auto 2rem auto;
+    margin: -1rem auto 2rem auto;
     z-index: 9000;
 }
 
-.trackInputs {
+.tracklistInputs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,30 +24,30 @@
     gap: 1rem;
 }
 
-.trackSongArtistAndAlbum {
+.tracklistSongArtistAndAlbum {
     display: flex;
     flex-direction: column;
     text-align: left;
     left: 0;
 }
 
-.trackSongArtistAndAlbum h3 {
+.tracklistSongArtistAndAlbum h3 {
     font-size: 2rem;
     font-weight: 300;
     margin-top: 1rem;
     margin-bottom: 0;
 }
 
-.trackSongArtistAndAlbum p {
+.tracklistSongArtistAndAlbum p {
     margin-top: 0;
     margin-bottom: 1rem;
 }
 
-.trackSongArtistAndAlbum p {
+.tracklistSongArtistAndAlbum p {
     color: grey
 }
 
-.minusButton {
+.plusButton {
     height: 2.5rem;
     border: 0;
     font-size: 1.25rem;
@@ -55,6 +55,12 @@
     background-color: rgb(15, 6, 44);
 }
 
-.minusButton:hover {
+.plusButton:hover {
     color: grey;
+}
+
+.plussButton button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

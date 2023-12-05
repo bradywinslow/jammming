@@ -6,10 +6,12 @@
     margin: 3rem;
     text-align: center;
     opacity: 0.8;
+    padding-bottom: 1rem;
 }
 
 .searchResultsContainer h2 {
     height: 4.5rem;
     font-size: 2rem;
     font-weight: 300;
+    margin-bottom: 0;
 }
