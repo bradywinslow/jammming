@@ -5,7 +5,7 @@ import Track from '../components/Track.jsx';
 export default function Playlist() {
     return (
         <div className={styles.playlistContainer}>
-            <form>
+            <form className={styles.form}>
                 <input className={styles.playlistInput} type='text' />
             </form>
             <Track />
