@@ -3,7 +3,7 @@ import styles from '../styles/Tracklist.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function Tracklist({ results }) {
+export default function Tracklist({ results, onAddResult }) {    
     return (
         <div className={styles.tracklistContainer}>
             {results.map((result) => (
@@ -12,7 +12,10 @@ export default function Tracklist({ results }) {
                         <h3>{result.song}</h3>
                         <p>{`${result.artist} | ${result.album}`}</p>
                     </div>
-                    <button className={styles.plusButton}>
+                    <button
+                        className={styles.plusButton}
+                        onClick={() => onAddResult(result)}
+                    >
                         <FontAwesomeIcon icon={faPlus} />
                     </button>
                 </div>

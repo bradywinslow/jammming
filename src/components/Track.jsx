@@ -1,10 +1,9 @@
 import React from 'react';
-import { tracks } from '../Constants/global.js';
 import styles from '../styles/Track.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
-export default function Track() {
+export default function Track({ tracks, onRemoveResult }) {
     return (
         <div className={styles.trackContainer}>
             {tracks.map((item) => (
@@ -13,7 +12,10 @@ export default function Track() {
                         <h3>{item.song}</h3>
                         <p>{`${item.artist} | ${item.album}`}</p>
                     </div>
-                    <button className={styles.minusButton}>
+                    <button
+                        className={styles.minusButton}
+                        onClick={() => onRemoveResult(item)}
+                    >
                         <FontAwesomeIcon icon={faMinus} />
                     </button>
                 </div>
