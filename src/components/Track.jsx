@@ -9,7 +9,7 @@ export default function Track({ tracks, onRemoveResult }) {
             {tracks.map((item) => (
                 <div key={item.id} className={styles.trackInputs}>
                     <div className={styles.trackSongArtistAndAlbum}>
-                        <h3>{item.song}</h3>
+                        <h3>{item.name}</h3>
                         <p>{`${item.artist} | ${item.album}`}</p>
                     </div>
                     <button

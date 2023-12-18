@@ -5,8 +5,8 @@
     color: white;
     margin: 3rem;
     text-align: center;
-    opacity: 0.8;
     padding-bottom: 1rem;
+    border-radius: 1.5rem;
 }
 
 .searchResultsContainer h2 {

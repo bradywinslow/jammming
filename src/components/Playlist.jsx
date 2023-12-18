@@ -28,8 +28,8 @@ export default function Playlist({ tracks, onRemoveResult }) {
             <Track tracks={tracks} onRemoveResult={onRemoveResult} />
             <input
                 className={styles.saveToSpotifyButton}
-                type="submit"
-                value="Save to Spotify"
+                type='submit'
+                value='Save to Spotify'
             />
         </div>
     )

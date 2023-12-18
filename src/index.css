@@ -1,12 +1,12 @@
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
   background-image:
     linear-gradient(
-      rgba(139, 82, 213, 0.5),
-      rgba(130, 82, 213, 0.5)
+      rgb(139 82 213 / 0.5),
+      rgb(139 82 213 / 0.5)
     ),
     url('./drums.jpg');
   background-size: cover;
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
 }

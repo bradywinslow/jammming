@@ -30,7 +30,9 @@ export default function SearchBar({ onSearch }) {
             <form className={styles.searchContainer} onKeyDown={handleKeyDown}>
                 <input type='text' value={searchInput} className={styles.searchInput} onChange={handleInputChange}></input>
             </form>
-            <button type='submit' onClick={handleSearch} className={styles.searchButton}>Search</button>
+            <form className={styles.searchButtonContainer}>
+                <input type='button' value='Search' onClick={handleSearch} className={styles.searchButton}></input>
+            </form>
         </search>
     )
 }

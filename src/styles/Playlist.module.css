@@ -5,10 +5,10 @@
     color: white;
     margin: 3rem;
     text-align: center;
-    opacity: 0.8;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 1.5rem;
 }
 
 .form {
@@ -35,11 +35,15 @@
     border-radius: 1rem;
     font-size: 1.25rem;
     color: white;
-    background-color: rgb(139, 82, 213);
+    background-color: rgb(139 82 213);
     margin-bottom: 2rem;
+    border-style: none;
 }
 
 .saveToSpotifyButton:hover {
-    background-color:rgb(15, 6, 44);
-    opacity: unset;
+    background-color:rgb(139 82 213 / 0.5);
+}
+
+.saveToSpotifyButton:active {
+    background-color: rgb(139 82 213 / 0.75);
 }

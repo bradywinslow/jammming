@@ -12,7 +12,8 @@ export default function App() {
 
   const handleSearch = (query) => {
       const filteredResults = tracklist.filter((item) => 
-      item.song.toLowerCase().includes(query.toLowerCase()) ||
+      item.name.toLowerCase().includes(query.toLowerCase()) ||
+      item.uri.toLowerCase().includes(query.toLowerCase()) ||
       item.artist.toLowerCase().includes(query.toLowerCase()) ||
       item.album.toLowerCase().includes(query.toLowerCase())        
       );
