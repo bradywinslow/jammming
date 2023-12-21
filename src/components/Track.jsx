@@ -10,7 +10,7 @@ export default function Track({ tracks, onRemoveResult }) {
                 <div key={item.id} className={styles.trackInputs}>
                     <div className={styles.trackSongArtistAndAlbum}>
                         <h3>{item.name}</h3>
-                        <p>{`${item.artist} | ${item.album}`}</p>
+                        <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
                     </div>
                     <button
                         className={styles.minusButton}

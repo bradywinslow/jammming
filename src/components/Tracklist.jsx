@@ -10,7 +10,7 @@ export default function Tracklist({ results, onAddResult }) {
                 <div key={result.id} className={styles.tracklistInputs}>
                     <div className={styles.tracklistSongArtistAndAlbum}>
                         <h3>{result.name}</h3>
-                        <p>{`${result.artist} | ${result.album}`}</p>
+                        <p>{`${result.artists[0].name} | ${result.album.name}`}</p>
                     </div>
                     <button
                         className={styles.plusButton}
