@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles/App.module.css';
 // import { tracklist } from './Constants/global.js';
 import Header from './components/Header.jsx';
+import LoginToSpotify from './components/LoginToSpotify.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import SearchResults from './components/SearchResults.jsx';
 import Playlist from './components/Playlist.jsx';
@@ -67,6 +68,9 @@ export default function App() {
     
       <main>
         <div className={styles.main}>
+            <div>
+              <LoginToSpotify />
+            </div>
             <div className={styles.searchBar}>
                 <SearchBar onSearch={handleSpotifySearch}/>
             </div>

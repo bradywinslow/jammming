@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 7rem;
+    margin-top: 5rem;
 }
 
 .searchContainer {
@@ -37,7 +37,7 @@
 }
 
 .searchButton:hover {
-    background-color: rgb(15, 6, 44, 0.5);
+    background-color: rgb(15 6 44 / 0.5);
 }
 
 .searchButton:active {
