@@ -29,6 +29,10 @@
     width: 80%;
 }
 
+.errorMessage {
+    padding-top: 1rem;
+}
+
 .saveToSpotifyButton {
     height: 2.75rem;
     width: 9.5rem;

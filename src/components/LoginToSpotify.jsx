@@ -3,10 +3,10 @@ import styles from '../styles/LoginToSpotify.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 
-const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
-const REDIRECT_URI = 'http://localhost:3000/';
-
 const stateKey = 'spotify_auth_state';
+const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
+const REDIRECT_URI = 'http://localhost:8080/';
+const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
 function generateRandomString(length) {
     let text = '';
@@ -16,12 +16,10 @@ function generateRandomString(length) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
-}
+};
 
 const state = generateRandomString(16);
-
 localStorage.setItem(stateKey, state);
-const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
 let url = 'https://accounts.spotify.com/authorize';
 url += '?client_id=' + encodeURIComponent(CLIENT_ID);
@@ -49,7 +47,15 @@ export default function LoginToSpotify() {
             localStorage.setItem('expires_in', expires_in);
             localStorage.setItem('token_type', token_type);
         }
-    }, [])
+
+        // Check if the token has expired
+        const now = new Date().getTime() / 1000; // Current time in seconds
+        const expirationTime = now + expires_in;
+        // If token has expired or will expire in a minute or less, initiate a new authorization flow
+        if (expirationTime < 60) {
+            window.location = url;
+        }
+    }, []);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -59,11 +65,7 @@ export default function LoginToSpotify() {
     return (
         <div className={styles.loginToSpotifyButtonDiv}>
             <form className={styles.loginToSpotifyButtonContainer} onClick={handleLogin}>
-                <button
-                    className={styles.loginToSpotifyButton}
-                    type='submit'
-                    formAction={`${url}`}
-                >Login to Spotify<FontAwesomeIcon icon={faSpotify} className={styles.faSpotify} /></button>
+                <button className={styles.loginToSpotifyButton} type='submit'>Login to Spotify<FontAwesomeIcon icon={faSpotify} className={styles.faSpotify} /></button>
             </form>
         </div>
     )
