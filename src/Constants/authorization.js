@@ -91,7 +91,6 @@ const authorization = () => {
     // Removing the state from the localStorage is causing an issue. Need to ask Dan about this
 };
 
-/*
 // Checks if token has expired. If it has, user will be asked to reauthenticate
 const handleReauthorization = () => {
     const expirationTime = localStorage.getItem('expiration_time');
@@ -101,10 +100,19 @@ const handleReauthorization = () => {
     const expired = accessToken && expirationTime && new Date().getTime() / 1000 > expirationTime;
 
     if (expired) {
+        // Define the Spotify authorization URL
+        let url = 'https://accounts.spotify.com/authorize';
+        url += '?client_id=' + encodeURIComponent(CLIENT_ID);
+        url += '&response_type=token';
+        url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
+        url += '&scope=' + encodeURIComponent(scope);
+        
         // Store the authorization URL in localStorage
         localStorage.setItem('reauth_url', url);
-        window.location = url;    
-    }
-}; */
 
-export { authorization, handleLogin };
+        // Redirect the user to the Spotify authorization URL
+        window.location = url;
+    }
+};
+
+export { authorization, handleLogin, handleReauthorization };

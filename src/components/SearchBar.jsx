@@ -28,7 +28,7 @@ export default function SearchBar({ onSearch }) {
     return (
         <search className={styles.searchDiv}>
             <form className={styles.searchContainer} onKeyDown={handleKeyDown}>
-                <input type='text' id='searchBar' value={searchInput} className={styles.searchInput} onChange={handleInputChange}></input>
+                <input type='text' id='searchBar' autoComplete='off' value={searchInput} className={styles.searchInput} onChange={handleInputChange}></input>
             </form>
             <form className={styles.searchButtonContainer}>
                 <input type='button' id='searchButton' value='Search' onClick={handleSearch} className={styles.searchButton}></input>

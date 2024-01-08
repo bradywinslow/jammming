@@ -13,7 +13,7 @@
 
 .form {
     width: 80%;
-    border-bottom: solid thin white;
+    
 }
 
 .playlistInput {
@@ -27,10 +27,6 @@
     text-align: center;
     margin-bottom: 0;
     width: 80%;
-}
-
-.noPlaylistNameErrorMessage {
-    padding-top: 1rem;
 }
 
 .saveToSpotifyButton {

@@ -1,112 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
+import { obtainUserId, createPlaylist, addToPlaylist } from '../Constants/httpRequests.js';
 
 export default function Playlist({ tracks, onRemoveResult }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
-    const [token, setToken] = useState('');
-    const [userId, setUserId] = useState({});
-    const [playlistId, setPlaylistId] = useState({});
-    const [noTracksAddedErrorMessage, setNoTracksAddedErrorMessage] = useState('');
-    const [noPlaylistNameErrorMessage, setNoPlaylistNameErrorMessage] = useState('');
+    // const [token, setToken] = useState('');
+    // const [userId, setUserId] = useState({});
+    // const [playlistId, setPlaylistId] = useState({});
+    const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
     const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (localStorage.getItem('access_token')) {
             setToken(localStorage.getItem('access_token'));
         }
-    }, []);
+    }, []); */
 
     const handlePlaylistTitleChange = (e) => {
         setPlaylistTitle(e.target.value);
-        setNoPlaylistNameErrorMessage('');
+        setSubmissionErrorMessage('');
     };
 
     const handleSavePlaylistToSpotify = () => {
+        if (!playlistTitle && (tracks.length === 0)) {
+            setSubmissionErrorMessage('Please add tracks and a playlist name before saving');
+            
+            // Clear the error message after 5 seconds
+            setTimeout(() => {
+                setSubmissionErrorMessage('');
+            }, 5000);
+
+            return;
+        };
+        
         if (tracks.length === 0) {
-            setNoTracksAddedErrorMessage('Please add tracks to the playlist before saving');
+            setSubmissionErrorMessage('Please add tracks to the playlist before saving');
        
             // Clear the error message after 5 seconds
             setTimeout(() => {
-                setNoTracksAddedErrorMessage('');
+                setSubmissionErrorMessage('');
             }, 5000);
 
             return;
         };
         
         if (!playlistTitle) {
-            setNoPlaylistNameErrorMessage('Please add a playlist name before saving');
+            setSubmissionErrorMessage('Please add a playlist name before saving');
             
             // Clear the error message after 5 seconds
             setTimeout(() => {
-                setNoPlaylistNameErrorMessage('');
+                setSubmissionErrorMessage('');
             }, 5000);
 
             return;
         };
         
         // Obtain userId
-        axios
-            .get('https://api.spotify.com/v1/me', {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                },
-            })
-            .then((response) => {
-                const userId = response.id;
-                setUserId(userId);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        obtainUserId();
         
         // Create playlist
-        axios
-            .post(`https://api.spotify.com/v1/users/${userId}/playlists`, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                    'Content-Type': 'application/json',
-            },
-                name: playlistTitle,
-                description: 'New playlist',
-                public: false,
-            })
-            .then((response) => {
-                const playlistId = response.id;
-                setPlaylistId(playlistId);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        
-        // Obtain playlist - Don't think this is necessary
-        /* axios
-            .get(`https://api.spotify.com/v1/playlists/${playlistId}`, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                },
-            }); */
+        createPlaylist(playlistTitle, (playlistId) => {
+            if (playlistId) {
+                // Display success message
+                setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
+
+                // Clear the success message after 5 seconds
+                setTimeout(() => {
+                    setSavedSuccessfullyMessage('');
+                }, 5000);
+            }
+        });
+
+        // Extract track uris from the tracks array
+        const trackUris = tracks.map((track) => track.uri);
 
         // Add to playlist
-        axios
-            .post(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-                headers: {
-                    Authorization: 'Bearer ' + token,
-                    'Content-Type': 'application/json',
-            },
-                uris: [
-                    `spotify:track:${tracks.map((item) => item.uris)}`
-                ]
-            })
-            .then(() => {
-                    setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`); // this isn't right; need to fix this
-                    setTimeout(() => {
-                        setSavedSuccessfullyMessage('');
-                    }, 5000);
-
-                    return;
-                });
+        addToPlaylist(playlistTitle, trackUris);
     };
     
     return (
@@ -120,19 +90,18 @@ export default function Playlist({ tracks, onRemoveResult }) {
                     onChange={handlePlaylistTitleChange}
                     required
                     placeholder='Playlist name'
+                    autoComplete='off'
                 />
             </form>
-            {noTracksAddedErrorMessage && <p className={styles.noTracksAddedErrorMessage}>{noTracksAddedErrorMessage}</p>}
-            {noPlaylistNameErrorMessage && <p className={styles.noPlaylistNameErrorMessage}>{noPlaylistNameErrorMessage}</p>}
+            {submissionErrorMessage && <p className={styles.submissionErrorMessage}>{submissionErrorMessage}</p>}
+            {/* Display success message if playlist saved successfully */}
+            {savedSuccessfullyMessage && <p className={styles.savedSuccessfullyMessage}>{savedSuccessfullyMessage}</p>}
             <Track tracks={tracks} onRemoveResult={onRemoveResult} />
             <form>
-                <button className={styles.saveToSpotifyButton} type='submit' onClick={handleSavePlaylistToSpotify}>
+                <button className={styles.saveToSpotifyButton} type='button' onClick={handleSavePlaylistToSpotify}>
                     Save Playlist
                 </button>
             </form>
-
-            {/* Display success message if playlist saved successfully */}
-            {savedSuccessfullyMessage}
         </div>
     )
 }
