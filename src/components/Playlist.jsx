@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
-import { obtainUserId, createPlaylist, addToPlaylist } from '../Constants/httpRequests.js';
+import { obtainUserId, addToPlaylist } from '../Constants/httpRequests.js';
 
-export default function Playlist({ tracks, onRemoveResult }) {
+export default function Playlist({ trackUris, tracks, onRemoveResult }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
-    // const [token, setToken] = useState('');
-    // const [userId, setUserId] = useState({});
-    // const [playlistId, setPlaylistId] = useState({});
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
     const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
-
-    /*useEffect(() => {
-        if (localStorage.getItem('access_token')) {
-            setToken(localStorage.getItem('access_token'));
-        }
-    }, []); */
 
     const handlePlaylistTitleChange = (e) => {
         setPlaylistTitle(e.target.value);
@@ -58,22 +49,19 @@ export default function Playlist({ tracks, onRemoveResult }) {
         
         // Obtain userId
         obtainUserId();
-        
-        // Create playlist
-        createPlaylist(playlistTitle, (playlistId) => {
-            if (playlistId) {
-                // Display success message
-                setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
-
-                // Clear the success message after 5 seconds
-                setTimeout(() => {
-                    setSavedSuccessfullyMessage('');
-                }, 5000);
-            }
-        });
 
         // Add to playlist
-        addToPlaylist(playlistTitle);
+        const tracksInfo = addToPlaylist(playlistTitle, trackUris);
+        if (tracksInfo) {
+            setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
+
+            // Clear message aftrer 5 seconds
+            setTimeout(() => {
+                setSavedSuccessfullyMessage('');
+            }, 5000);
+
+            return;
+        };
     };
     
     return (

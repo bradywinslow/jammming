@@ -7,60 +7,38 @@ import SearchBar from './components/SearchBar.jsx';
 import SearchResults from './components/SearchResults.jsx';
 import Playlist from './components/Playlist.jsx';
 
-// const TRACKLIST_ENDPOINT = 'https://api.spotify.com/v1/search';
-
 export default function App() {
-  // const [accessToken, setAccessToken] = useState('');
   const [searchData, setSearchData] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
-  
-  /*
-  useEffect(() => {
-    if (localStorage.getItem('access_token')) {
-      setAccessToken(localStorage.getItem('access_token'));
-    }
-  }, []); */
+  const [trackUris, setTrackUris] = useState([]);
 
   const handleSpotifySearch = async (searchInput) => {
     const searchData = await spotifySearch(searchInput);
     setSearchData(searchData);
   };
 
-  /*
-  const handleSpotifySearch = async (searchInput) => {
-    const urlToFetch = `${TRACKLIST_ENDPOINT}?q=${encodeURIComponent(searchInput)}&type=track%2Calbum%2Cartist`;
-
-    try {
-      const response = await fetch(urlToFetch, {
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ' + accessToken,
-        },
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setData(data.tracks.items);
-        // console.log(data);
-      } else {
-        console.error('Search request failed.');
-        return null;
-      }
-    } catch(error) {
-      console.error('Error during API call: ', error);
-    }
-  }; */
-
   // Add track to playlist
   const addSearchResultToPlaylist = (track) => {
-    if (!playlistTracks.some((playlistTracks) => playlistTracks.id === track.id)) {
+    if (!playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)) {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
+
+      // Update trackUris with the new track's URI
+      setTrackUris((prevTrackUris) => [...prevTrackUris, track.uri]);
     }
   };
 
   // Remove track from playlist
   const removeSearchResultFromPlaylist = (trackId) => {
-      setPlaylistTracks((prevTracks) => prevTracks.filter((track) => track.id !== trackId.id));
+      setPlaylistTracks((prevTracks) => {
+        // Filter out the removed track from the playlist
+        const updatedTracks = prevTracks.filter((track) => track.id !== trackId.id);
+      
+        // Update playlistTracks state
+        setPlaylistTracks(updatedTracks);
+
+        // Update trackUris by filtering out the URI of the removed track
+        setTrackUris((prevTrackUris) => prevTrackUris.filter((uri) => uri !== trackId.uri));
+      })
   };
 
   return (
@@ -79,7 +57,7 @@ export default function App() {
             </div>
             <div className={styles.resultsAndPlaylist}>
               <SearchResults results={searchData} onAddResult={addSearchResultToPlaylist} />
-              <Playlist tracks={playlistTracks} onRemoveResult={removeSearchResultFromPlaylist} />
+              <Playlist trackUris={trackUris} tracks={playlistTracks} onRemoveResult={removeSearchResultFromPlaylist} />
             </div>
         </div>
       </main>

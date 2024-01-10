@@ -1,7 +1,3 @@
-/*
-addToPlaylist API call not working. Need to ask Dan about this
-*/
-
 import { handleReauthorization } from "./authorization.js";
 
 // Search Spotify
@@ -65,7 +61,7 @@ const obtainUserId = async () => {
 
 
 // Create playlist
-const createPlaylist = async (playlistTitle, handleSuccess) => {
+const createPlaylist = async (playlistTitle) => {
     try {
         let accessToken = localStorage.getItem('access_token');
         const userId = await obtainUserId();
@@ -91,9 +87,6 @@ const createPlaylist = async (playlistTitle, handleSuccess) => {
         if (response.ok) {
             const data = await response.json();
             const playlistId = data.id;
-
-            // Call the handleSuccess callback with the playlistId
-            handleSuccess(playlistId);
             return playlistId;
         } else {
             // Handle non-OK response
@@ -131,12 +124,6 @@ const addToPlaylist = async (playlistTitle, trackUris) => {
         if (response.ok) {
             const data = await response.json();
             const tracksInfo = data.id;
-
-            /*const savedSuccessfullyMessage = `${playlistTitle} saved successfully!`;
-            setTimeout(() => {
-                savedSuccessfullyMessage('');
-            }, 5000); */
-
             return tracksInfo;
 
         } else {

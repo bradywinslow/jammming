@@ -11,7 +11,6 @@ export default function Track({ tracks, onRemoveResult }) {
                     <div className={styles.trackSongArtistAndAlbum}>
                         <h3>{item.name}</h3>
                         <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
-                        {/* <p>{`${item.uri}`}</p> */}
                     </div>
                     <button className={styles.minusButton} onClick={() => onRemoveResult(item)}>
                         <FontAwesomeIcon icon={faMinus} />
