@@ -1,24 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './styles/App.module.css';
+import { spotifySearch } from './Constants/httpRequests.js';
 import Header from './components/Header.jsx';
 import LoginToSpotify from './components/LoginToSpotify.jsx';
 import SearchBar from './components/SearchBar.jsx';
 import SearchResults from './components/SearchResults.jsx';
 import Playlist from './components/Playlist.jsx';
 
-const TRACKLIST_ENDPOINT = 'https://api.spotify.com/v1/search';
+// const TRACKLIST_ENDPOINT = 'https://api.spotify.com/v1/search';
 
 export default function App() {
-  const [accessToken, setAccessToken] = useState('');
-  const [data, setData] = useState([]);
+  // const [accessToken, setAccessToken] = useState('');
+  const [searchData, setSearchData] = useState([]);
   const [playlistTracks, setPlaylistTracks] = useState([]);
   
+  /*
   useEffect(() => {
     if (localStorage.getItem('access_token')) {
       setAccessToken(localStorage.getItem('access_token'));
     }
-  }, []);
+  }, []); */
 
+  const handleSpotifySearch = async (searchInput) => {
+    const searchData = await spotifySearch(searchInput);
+    setSearchData(searchData);
+  };
+
+  /*
   const handleSpotifySearch = async (searchInput) => {
     const urlToFetch = `${TRACKLIST_ENDPOINT}?q=${encodeURIComponent(searchInput)}&type=track%2Calbum%2Cartist`;
 
@@ -41,7 +49,7 @@ export default function App() {
     } catch(error) {
       console.error('Error during API call: ', error);
     }
-  };
+  }; */
 
   // Add track to playlist
   const addSearchResultToPlaylist = (track) => {
@@ -70,7 +78,7 @@ export default function App() {
               <SearchBar onSearch={handleSpotifySearch} />
             </div>
             <div className={styles.resultsAndPlaylist}>
-              <SearchResults results={data} onAddResult={addSearchResultToPlaylist} />
+              <SearchResults results={searchData} onAddResult={addSearchResultToPlaylist} />
               <Playlist tracks={playlistTracks} onRemoveResult={removeSearchResultFromPlaylist} />
             </div>
         </div>

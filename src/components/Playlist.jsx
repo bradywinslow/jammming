@@ -72,11 +72,8 @@ export default function Playlist({ tracks, onRemoveResult }) {
             }
         });
 
-        // Extract track uris from the tracks array
-        const trackUris = tracks.map((track) => track.uri);
-
         // Add to playlist
-        addToPlaylist(playlistTitle, trackUris);
+        addToPlaylist(playlistTitle);
     };
     
     return (

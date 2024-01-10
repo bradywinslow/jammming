@@ -3,7 +3,7 @@ import styles from '../styles/Tracklist.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-export default function Tracklist({ results, onAddResult }) {    
+export default function Tracklist({ results, onAddResult }) {
     return (
         <div className={styles.tracklistContainer}>
             {results.map((result) => (
