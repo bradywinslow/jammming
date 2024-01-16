@@ -15,7 +15,7 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
 
     const handleSavePlaylistToSpotify = () => {
         if (!playlistTitle && (tracks.length === 0)) {
-            setSubmissionErrorMessage('Please add tracks and a playlist name before saving');
+            setSubmissionErrorMessage('Please add tracks and playlist name before saving');
             
             // Clear the error message after 5 seconds
             setTimeout(() => {
@@ -26,7 +26,7 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
         };
         
         if (tracks.length === 0) {
-            setSubmissionErrorMessage('Please add tracks to the playlist before saving');
+            setSubmissionErrorMessage('Please add tracks to playlist before saving');
        
             // Clear the error message after 5 seconds
             setTimeout(() => {
@@ -37,7 +37,7 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
         };
         
         if (!playlistTitle) {
-            setSubmissionErrorMessage('Please add a playlist name before saving');
+            setSubmissionErrorMessage('Please add playlist name before saving');
             
             // Clear the error message after 5 seconds
             setTimeout(() => {

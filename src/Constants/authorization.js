@@ -1,13 +1,12 @@
 /* 
-Questions for Dan:
-1. Need help with issue that's being caused when state is removed from localStorage after authentication
-2. Authentication page not opening up correctly --> need to logout of Spotify and then click Login to Spotify button to see error
+To Dos:
+1. Testing
 */
 
 // Spotify application details
 const stateKey = 'spotify_auth_state';
 const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
-const REDIRECT_URI = 'http://localhost:8080/';
+const REDIRECT_URI = 'http://localhost:8080';
 const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
 // Function to generate a random string
@@ -83,12 +82,11 @@ const authorization = () => {
     localStorage.setItem('token_type', token_type);
 
     // Remove the state from localStorage only after successful authorization
-    /* if (stateInHash === storedState) {
+    if (stateInHash === storedState) {
         localStorage.removeItem(stateKey);
-    } */ 
+    }
 
-    // Removing the state is a security measure to help prevent CSRF attacks
-    // Removing the state from the localStorage is causing an issue. Need to ask Dan about this
+    window.location.hash = '';
 };
 
 // Checks if token has expired. If it has, user will be asked to reauthenticate

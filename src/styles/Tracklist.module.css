@@ -1,7 +1,6 @@
 .tracklistContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     width: 80%;
     background-color:rgb(15, 6, 44);
@@ -17,12 +16,20 @@
 .tracklistInputs {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     border-bottom: solid thin white;
     width: 100%;
     gap: 1rem;
     word-break: break-all;
+}
+
+.tracklistDataAndPlusButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
 }
 
 .tracklistSongArtistAndAlbum {

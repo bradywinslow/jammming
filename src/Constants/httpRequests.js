@@ -7,25 +7,33 @@ const spotifySearch = async (searchInput) => {
     const urlToFetch = `${TRACKLIST_ENDPOINT}?q=${encodeURIComponent(searchInput)}&type=track%2Calbum%2Cartist`;
 
     try {
-      const response = await fetch(urlToFetch, {
-        method: 'GET',
-        headers: {
-          Authorization: 'Bearer ' + accessToken,
-        },
-      });
+        /* // Alert user to login if they haven't already
+        if (accessToken === undefined) {
+            alert('Please login before searching');
+        } */
+
+        // Check for token expiration before making the API call
+        handleReauthorization();
       
-      if (response.ok) {
-        const data = await response.json();
-        const searchData = data.tracks.items;
-        return searchData;
-      } else {
-        console.error('Search request failed.');
-        return null;
-      }
+        const response = await fetch(urlToFetch, {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + accessToken,
+            },
+        });
+      
+        if (response.ok) {
+            const data = await response.json();
+            const searchData = data.tracks.items;
+            return searchData;
+        } else {
+            console.error('Search request failed.');
+            return null;
+        }
     } catch(error) {
-      console.error('Error during API call: ', error);
+        console.error('Error during API call: ', error);
     }
-  };
+};
 
 
 // Obtain userId
@@ -106,9 +114,6 @@ const addToPlaylist = async (playlistTitle, trackUris) => {
         let accessToken = localStorage.getItem('access_token');
         const playlistId = await createPlaylist(playlistTitle);
         const urlToFetch = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-        
-        // Check for token expiration before making the API call
-        handleReauthorization();
 
         const response = await fetch(urlToFetch, {
             method: 'POST',

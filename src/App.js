@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles/App.module.css';
 import { spotifySearch } from './Constants/httpRequests.js';
+import { handleReauthorization } from './Constants/authorization.js';
 import Header from './components/Header.jsx';
 import LoginToSpotify from './components/LoginToSpotify.jsx';
 import SearchBar from './components/SearchBar.jsx';
@@ -19,6 +20,9 @@ export default function App() {
 
   // Add track to playlist
   const addSearchResultToPlaylist = (track) => {
+    // Check for token expiration before adding track to playlist
+    handleReauthorization();
+    
     if (!playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)) {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
 
@@ -29,16 +33,19 @@ export default function App() {
 
   // Remove track from playlist
   const removeSearchResultFromPlaylist = (trackId) => {
-      setPlaylistTracks((prevTracks) => {
-        // Filter out the removed track from the playlist
-        const updatedTracks = prevTracks.filter((track) => track.id !== trackId.id);
-      
-        // Update playlistTracks state
-        setPlaylistTracks(updatedTracks);
+    // Check for token expiration before removing track from playlist
+    handleReauthorization();
+  
+    setPlaylistTracks((prevTracks) => {
+    // Filter out the removed track from the playlist
+    const updatedTracks = prevTracks.filter((track) => track.id !== trackId.id);
 
-        // Update trackUris by filtering out the URI of the removed track
-        setTrackUris((prevTrackUris) => prevTrackUris.filter((uri) => uri !== trackId.uri));
-      })
+    // Update trackUris by filtering out the URI of the removed track
+    setTrackUris((prevTrackUris) => prevTrackUris.filter((uri) => uri !== trackId.uri));
+
+    // Update playlistTracks state
+    return updatedTracks;
+   })
   };
 
   return (

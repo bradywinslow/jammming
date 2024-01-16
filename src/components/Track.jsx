@@ -8,13 +8,16 @@ export default function Track({ tracks, onRemoveResult }) {
         <div className={styles.trackContainer}>
             {tracks.map((item) => (
                 <div key={item.id} className={styles.trackInputs}>
-                    <div className={styles.trackSongArtistAndAlbum}>
-                        <h3>{item.name}</h3>
-                        <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
+                    <img src={`${item.album.images[2].url}`} alt="album artwork" />
+                    <div className={styles.trackDataAndMinusButton}>
+                        <div className={styles.trackSongArtistAndAlbum}>
+                            <h3>{item.name}</h3>
+                            <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
+                        </div>
+                        <button className={styles.minusButton} onClick={() => onRemoveResult(item)}>
+                            <FontAwesomeIcon icon={faMinus} />
+                        </button>
                     </div>
-                    <button className={styles.minusButton} onClick={() => onRemoveResult(item)}>
-                        <FontAwesomeIcon icon={faMinus} />
-                    </button>
                 </div>
             ))}
         </div>

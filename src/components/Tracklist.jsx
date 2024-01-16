@@ -8,16 +8,16 @@ export default function Tracklist({ results, onAddResult }) {
         <div className={styles.tracklistContainer}>
             {results.map((result) => (
                 <div key={result.id} className={styles.tracklistInputs}>
-                    <div className={styles.tracklistSongArtistAndAlbum}>
-                        <h3>{result.name}</h3>
-                        <p>{`${result.artists[0].name} | ${result.album.name}`}</p>
+                    <img src={`${result.album.images[2].url}`} alt="album artwork" />
+                    <div className={styles.tracklistDataAndPlusButton}>
+                        <div className={styles.tracklistSongArtistAndAlbum}>
+                            <h3>{result.name}</h3>
+                            <p>{`${result.artists[0].name} | ${result.album.name}`}</p>
+                        </div>
+                        <button className={styles.plusButton} onClick={() => onAddResult(result)}>
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button>
                     </div>
-                    <button
-                        className={styles.plusButton}
-                        onClick={() => onAddResult(result)}
-                    >
-                        <FontAwesomeIcon icon={faPlus} />
-                    </button>
                 </div>
             ))}
         </div>
