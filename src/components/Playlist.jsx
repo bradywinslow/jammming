@@ -13,6 +13,13 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
         setSubmissionErrorMessage('');
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSavePlaylistToSpotify();
+        }
+    };
+
     const handleSavePlaylistToSpotify = () => {
         if (!playlistTitle && (tracks.length === 0)) {
             setSubmissionErrorMessage('Please add tracks and playlist name before saving');
@@ -73,6 +80,7 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
                     id='playlistInput'
                     value={playlistTitle}
                     onChange={handlePlaylistTitleChange}
+                    onKeyDown={handleKeyDown}
                     required
                     placeholder='Playlist name'
                     autoComplete='off'

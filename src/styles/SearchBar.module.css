@@ -43,3 +43,8 @@
 .searchButton:active {
     background-color: rgb(15 6 44 / 0.75);
 }
+
+.loginErrorMessage {
+    color: white;
+    margin-top: 1.5rem;
+}

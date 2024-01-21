@@ -3,25 +3,51 @@ import styles from '../styles/SearchBar.module.css';
 
 export default function SearchBar({ onSearch }) {
     const [searchInput, setSearchInput] = useState('');
+    const [loginErrorMessage, setLoginErrorMessage] = useState('');
 
     const handleInputChange = (e) => {
         setSearchInput(e.target.value);
     };
     
-    const handleSearch = () => {
-        if (searchInput) {
+    const handleSearch = (e) => {
+        let accessToken = localStorage.getItem('access_token');
+
+        if (accessToken && searchInput) {
             onSearch(searchInput);
             setSearchInput('');
+        } else if (searchInput === '') {
+            e.preventDefault();
+        } else {
+            setLoginErrorMessage('Please login before searching');
+            
+            // Clear the error message after 5 seconds
+            setTimeout(() => {
+                setLoginErrorMessage('');
+            }, 5000);
+
+            return;
         }
     };
 
     const handleKeyDown = (e) => {
-        if (e.key === 'Enter' && searchInput) {
+        let accessToken = localStorage.getItem('access_token');
+        
+        if (e.key === 'Enter' && searchInput && accessToken) {
             e.preventDefault();
             onSearch(searchInput);
             setSearchInput('');
         } else if (e.key === 'Enter' && searchInput === '') {
             e.preventDefault();
+        } else if (e.key === 'Enter' && searchInput && !accessToken) {
+            e.preventDefault();
+            setLoginErrorMessage('Please login before searching');
+            
+            // Clear the error message after 5 seconds
+            setTimeout(() => {
+                setLoginErrorMessage('');
+            }, 5000);
+
+            return;
         }
     };
 
@@ -33,6 +59,7 @@ export default function SearchBar({ onSearch }) {
             <form className={styles.searchButtonContainer}>
                 <input type='button' id='searchButton' value='Search' onClick={handleSearch} className={styles.searchButton}></input>
             </form>
+            {loginErrorMessage && <p className={styles.loginErrorMessage}>{loginErrorMessage}</p>}
         </search>
     )
 }
