@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from '../styles/LoginToSpotify.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
+import { faSpotify } from '@fontawesome/free-brands-svg-icons';
 import { authorization, handleLogin } from '../Constants/authorization.js';
 
 export default function LoginToSpotify() {
