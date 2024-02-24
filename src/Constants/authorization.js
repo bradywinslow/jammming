@@ -4,7 +4,7 @@ const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
 const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
 function getRedirectUri() {
-    const origin = window.origin;
+    const origin = window.location.origin;
     if (origin.includes('localhost')) {
         return 'http://localhost:8080';
     }
