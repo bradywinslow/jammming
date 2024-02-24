@@ -8,7 +8,7 @@ function getRedirectUri() {
     if (origin.includes('localhost')) {
         return 'http://localhost:8080';
     }
-    return origin;
+    return origin.replace(/\+/g, " ");
 }
 
 // Function to generate a random string
