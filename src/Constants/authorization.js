@@ -1,14 +1,15 @@
-/* 
-To Dos:
-1. Testing
-*/
-
 // Spotify application details
 const stateKey = 'spotify_auth_state';
 const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
-// const REDIRECT_URI = 'http://localhost:8080';
-const REDIRECT_URI = 'https://curious-salamander-cadf27.netlify.app/';
 const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
+
+function getRedirectUri() {
+    const origin = window.origin;
+    if (origin.includes('localhost')) {
+        return 'http://localhost:8080';
+    }
+    return origin;
+}
 
 // Function to generate a random string
 function generateRandomString(length) {
@@ -41,7 +42,7 @@ const handleLogin = (e) => {
     let url = 'https://accounts.spotify.com/authorize';
     url += '?client_id=' + encodeURIComponent(CLIENT_ID);
     url += '&response_type=token';
-    url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
+    url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
     url += '&state=' + encodeURIComponent(storedState);
     url += '&scope=' + encodeURIComponent(scope);
 
@@ -103,7 +104,7 @@ const handleReauthorization = () => {
         let url = 'https://accounts.spotify.com/authorize';
         url += '?client_id=' + encodeURIComponent(CLIENT_ID);
         url += '&response_type=token';
-        url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
+        url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
         url += '&scope=' + encodeURIComponent(scope);
         
         // Store the authorization URL in localStorage
