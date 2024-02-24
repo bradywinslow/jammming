@@ -4,12 +4,14 @@ const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
 const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 
 function getRedirectUri() {
-    const origin = window.location.origin;
+    const origin = window.origin;
     if (origin.includes('localhost')) {
         return 'http://localhost:8080';
     }
     return origin;
 }
+
+let REDIRECT_URI = getRedirectUri();
 
 // Function to generate a random string
 function generateRandomString(length) {
@@ -42,7 +44,7 @@ const handleLogin = (e) => {
     let url = 'https://accounts.spotify.com/authorize';
     url += '?client_id=' + encodeURIComponent(CLIENT_ID);
     url += '&response_type=token';
-    url += '&redirect_uri=' + decodeURIComponent(getRedirectUri());
+    url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
     url += '&state=' + encodeURIComponent(storedState);
     url += '&scope=' + encodeURIComponent(scope);
 
@@ -104,7 +106,7 @@ const handleReauthorization = () => {
         let url = 'https://accounts.spotify.com/authorize';
         url += '?client_id=' + encodeURIComponent(CLIENT_ID);
         url += '&response_type=token';
-        url += '&redirect_uri=' + decodeURIComponent(getRedirectUri());
+        url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
         url += '&scope=' + encodeURIComponent(scope);
         
         // Store the authorization URL in localStorage
