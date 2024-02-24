@@ -11,8 +11,6 @@ function getRedirectUri() {
     return origin;
 }
 
-let REDIRECT_URI = getRedirectUri();
-
 // Function to generate a random string
 function generateRandomString(length) {
     let text = '';
@@ -44,7 +42,7 @@ const handleLogin = (e) => {
     let url = 'https://accounts.spotify.com/authorize';
     url += '?client_id=' + encodeURIComponent(CLIENT_ID);
     url += '&response_type=token';
-    url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
+    url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
     url += '&state=' + encodeURIComponent(storedState);
     url += '&scope=' + encodeURIComponent(scope);
 
@@ -106,7 +104,7 @@ const handleReauthorization = () => {
         let url = 'https://accounts.spotify.com/authorize';
         url += '?client_id=' + encodeURIComponent(CLIENT_ID);
         url += '&response_type=token';
-        url += '&redirect_uri=' + encodeURIComponent(REDIRECT_URI);
+        url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
         url += '&scope=' + encodeURIComponent(scope);
         
         // Store the authorization URL in localStorage
