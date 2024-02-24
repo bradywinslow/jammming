@@ -1,6 +1,12 @@
+/* 
+To Dos:
+1. Testing
+*/
+
 // Spotify application details
 const stateKey = 'spotify_auth_state';
 const CLIENT_ID = 'c73c8dd43ae64b7c82a1e3b355cda443';
+// const REDIRECT_URI = 'http://localhost:8080';
 const REDIRECT_URI = 'https://curious-salamander-cadf27.netlify.app/';
 const scope = 'playlist-modify-private playlist-modify-public user-read-private user-read-email';
 

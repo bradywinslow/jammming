@@ -22,11 +22,11 @@ Jammming is a web application that allows users to log into their Spotify accoun
 - **Save to Spotify:** Save your curated playlist directly to your Spotify account.
 
 ## Technologies Used
-- **HTML5:**
-- **CSS3:**
-- **JavaScript:**
-- **React:**
-- **Netlify:**
+- **HTML5:** Structuring the content of the application.
+- **CSS3:** Styling and layout of the application.
+- **JavaScript:** Adding interactivity and dynamic elements.
+- **React:** Library used to build application interface.
+- **Netlify:** Hosting the application directly from this repository.
 
 ## Getting Started
 To run Jammming locally, follow these steps:
@@ -55,7 +55,7 @@ npm install
 npm start
 ```
 
-The app will be accessible at `http://localhost:8080` by default.
+The app will be accessible at `http://localhost:3000` by default.
 ## How to Use
 ...
 
