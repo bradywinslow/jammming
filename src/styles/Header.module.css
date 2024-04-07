@@ -1,7 +1,7 @@
 .header {
-    color: white;
+    color: #FAFAFA;
     font-size: 1.5rem;
-    background-color: rgb(15, 6, 44);
+    background-color: #0F062C;
     height: 4.5rem;
     width: 100%;
     display: flex;
@@ -10,5 +10,5 @@
 }
 
 .mmm {
-    color: rgb(139, 82, 213);
+    color: #B28CE3;
 }
