@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
-import { obtainUserId, addToPlaylist } from '../Constants/httpRequests.js';
+import { addToPlaylist } from '../spotify/httpRequests.js';
 
 export default function Playlist({ trackUris, tracks, onRemoveResult }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
@@ -53,9 +53,6 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
 
             return;
         };
-        
-        // Obtain userId
-        obtainUserId();
 
         // Add to playlist
         const tracksInfo = addToPlaylist(playlistTitle, trackUris);

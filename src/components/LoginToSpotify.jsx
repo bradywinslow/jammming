@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import styles from '../styles/LoginToSpotify.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { authorization, handleLogin } from '../Constants/authorization.js';
+import { retrieveTokenFromUrlHash, handleLogin } from '../spotify/authorization.js';
 
 export default function LoginToSpotify() {
     useEffect(() => {
         // Check if the hash contains access_token, indicating successful login
         if (window.location.hash.includes('access_token')) {
             // Call authorization function
-            authorization();
+            retrieveTokenFromUrlHash();
         }
     }, []); // Empty dependency array so effect only runs once
 

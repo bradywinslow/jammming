@@ -54,10 +54,21 @@ export default function SearchBar({ onSearch }) {
     return (
         <search className={styles.searchDiv}>
             <form className={styles.searchContainer} onKeyDown={handleKeyDown}>
-                <input type='text' id='searchBar' autoComplete='off' value={searchInput} className={styles.searchInput} onChange={handleInputChange}></input>
-            </form>
-            <form className={styles.searchButtonContainer}>
-                <input type='button' id='searchButton' value='Search' onClick={handleSearch} className={styles.searchButton}></input>
+                <input
+                    className={styles.searchInput}
+                    type='text'
+                    id='searchBar'
+                    autoComplete='off'
+                    value={searchInput}
+                    onChange={handleInputChange}
+                ></input>
+                <input
+                    className={styles.searchButton}
+                    type='button'
+                    id='searchButton'
+                    value='Search'
+                    onClick={handleSearch}
+                ></input>
             </form>
             {loginErrorMessage && <p className={styles.loginErrorMessage}>{loginErrorMessage}</p>}
         </search>

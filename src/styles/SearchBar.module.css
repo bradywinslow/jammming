@@ -7,6 +7,8 @@
 }
 
 .searchContainer {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 2rem;
 }
 
@@ -21,11 +23,6 @@
     outline: none;
 }
 
-.searchButtonContainer {
-    background-color: rgb(139 82 213);
-    border-radius: 1rem;
-}
-
 .searchButton {
     height: 2.75rem;
     width: 6.5rem;
@@ -34,6 +31,7 @@
     color: white;
     background-color: rgb(15 6 44);
     border-style: none;
+    margin: 1.5rem auto 0 auto;
 }
 
 .searchButton:hover {
