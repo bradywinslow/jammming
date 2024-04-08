@@ -9,8 +9,13 @@
     align-items: center;
 }
 
+.title {
+    font-family: "PT Sans", sans-serif;
+}
+
 .faMusic {
     color: #B28CE3;
+    font-size: 2.5rem;
 }
 
 /* button color: #8AFFB3 */
