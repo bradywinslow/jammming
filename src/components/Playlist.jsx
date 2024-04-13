@@ -3,7 +3,7 @@ import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
 import { addToPlaylist } from '../spotify/httpRequests.js';
 
-export default function Playlist({ trackUris, tracks, onRemoveResult }) {
+export default function Playlist({ tracks, onRemoveResult }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
     const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
@@ -55,7 +55,7 @@ export default function Playlist({ trackUris, tracks, onRemoveResult }) {
         };
 
         // Add to playlist
-        const tracksInfo = addToPlaylist(playlistTitle, trackUris);
+        const tracksInfo = addToPlaylist(playlistTitle, tracks);
         if (tracksInfo) {
             setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
 

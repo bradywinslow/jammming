@@ -109,7 +109,7 @@ const createPlaylist = async (playlistTitle) => {
 
 
 // Add to playlist
-const addToPlaylist = async (playlistTitle, trackUris) => {
+const addToPlaylist = async (playlistTitle, tracks) => {
     try {
         let accessToken = localStorage.getItem('access_token');
         const playlistId = await createPlaylist(playlistTitle);
@@ -122,7 +122,7 @@ const addToPlaylist = async (playlistTitle, trackUris) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                uris: trackUris,
+                uris: tracks.map(t => t.uri),
             }),
         });
 
