@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ChakraProvider } from '@chakra-ui/react'
 import styles from './styles/App.module.css';
 import { spotifySearch } from './spotify/httpRequests.js';
 import Header from './components/Header.jsx';
@@ -36,7 +35,7 @@ export default function App() {
   };
 
   return (
-    <ChakraProvider>
+    <>
       <header>
         <Header />
       </header>
@@ -55,6 +54,6 @@ export default function App() {
             </div>
         </div>
       </main>
-    </ChakraProvider>
+    </>
   );
 }

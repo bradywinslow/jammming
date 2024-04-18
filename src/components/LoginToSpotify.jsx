@@ -15,6 +15,7 @@ export default function LoginToSpotify() {
 
     return (
         <div className={styles.loginToSpotifyButtonDiv}>
+            
             <div className={styles.loginToSpotifyButtonContainer}>
                 <button className={styles.loginToSpotifyButton} type='button' onClick={handleLogin}>
                     Login to Spotify<FontAwesomeIcon icon={faSpotify} className={styles.faSpotify} />
