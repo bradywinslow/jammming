@@ -7,11 +7,6 @@ const spotifySearch = async (searchInput) => {
     const urlToFetch = `${TRACKLIST_ENDPOINT}?q=${encodeURIComponent(searchInput)}&type=track%2Calbum%2Cartist`;
 
     try {
-        /* // Alert user to login if they haven't already
-        if (accessToken === undefined) {
-            alert('Please login before searching');
-        } */
-
         // Check for token expiration before making the API call
         handleReauthorization();
       
