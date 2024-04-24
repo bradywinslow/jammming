@@ -79,7 +79,7 @@ export default function Playlist({ tracks, onRemoveResult }) {
                     onChange={handlePlaylistTitleChange}
                     onKeyDown={handleKeyDown}
                     required
-                    placeholder='Playlist name'
+                    placeholder='Give your playlist a name'
                     autoComplete='off'
                 />
             </form>
