@@ -1,36 +1,17 @@
 import React, { useState } from 'react';
 import styles from '../styles/SearchBar.module.css';
 import { spotifySearch } from '../spotify/httpRequests.js';
-import LoginToSpotify from './LoginToSpotify.jsx';
-import SearchResults from './SearchResults.jsx';
-import Playlist from './Playlist.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
-    const [searchData, setSearchData] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [playlistTracks, setPlaylistTracks] = useState([]);
+    
+    const navigate = useNavigate();
   
     const handleSpotifySearch = async (searchInput) => {
-      const searchResults = await spotifySearch(searchInput);
-      setSearchData(searchResults);
-    };
-  
-    // Add track to playlist
-    const addSearchResultToPlaylist = (track) => {    
-      if (!playlistTracks.some((playlistTrack) => playlistTrack.id === track.id)) {
-        setPlaylistTracks((prevTracks) => [...prevTracks, track]);
-      }
-    };
-  
-    // Remove track from playlist
-    const removeSearchResultFromPlaylist = (trackId) => {
-      setPlaylistTracks((prevTracks) => {
-        // Filter out the removed track from the playlist
-        const updatedTracks = prevTracks.filter((track) => track.id !== trackId.id);
-  
-        // Update playlistTracks state
-        return updatedTracks;
-      })
+      const searchData = await spotifySearch(searchInput);
+
+      navigate('/create-playlist', { state: searchData });
     };
 
     const handleInputChange = (e) => {
@@ -58,7 +39,6 @@ export default function SearchBar() {
 
     return (
         <search className={styles.searchDiv}>
-            <LoginToSpotify />
             <form className={styles.searchContainer} onKeyDown={handleKeyDown}>
                 <input
                     className={styles.searchInput}
@@ -76,8 +56,6 @@ export default function SearchBar() {
                     onClick={handleSearch}
                 ></input>
             </form>
-            <SearchResults results={searchData} onAddResult={addSearchResultToPlaylist} />
-            <Playlist tracks={playlistTracks} onRemoveResult={removeSearchResultFromPlaylist} />
         </search>
     )
 }

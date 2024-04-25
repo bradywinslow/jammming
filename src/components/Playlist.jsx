@@ -3,7 +3,7 @@ import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
 import { addToPlaylist } from '../spotify/httpRequests.js';
 
-export default function Playlist({ tracks, onRemoveResult }) {
+export default function Playlist({ playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
     const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
@@ -21,7 +21,7 @@ export default function Playlist({ tracks, onRemoveResult }) {
     };
 
     const handleSavePlaylistToSpotify = () => {
-        if (!playlistTitle && (tracks.length === 0)) {
+        if (!playlistTitle && (playlistTracks.length === 0)) {
             setSubmissionErrorMessage('Please add tracks and playlist name before saving');
             
             // Clear the error message after 5 seconds
@@ -32,7 +32,7 @@ export default function Playlist({ tracks, onRemoveResult }) {
             return;
         };
         
-        if (tracks.length === 0) {
+        if (playlistTracks.length === 0) {
             setSubmissionErrorMessage('Please add tracks to playlist before saving');
        
             // Clear the error message after 5 seconds
@@ -55,7 +55,7 @@ export default function Playlist({ tracks, onRemoveResult }) {
         };
 
         // Add to playlist
-        const tracksInfo = addToPlaylist(playlistTitle, tracks);
+        const tracksInfo = addToPlaylist(playlistTitle, playlistTracks);
         if (tracksInfo) {
             setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
 
@@ -86,7 +86,7 @@ export default function Playlist({ tracks, onRemoveResult }) {
             {submissionErrorMessage && <p className={styles.submissionErrorMessage}>{submissionErrorMessage}</p>}
             {/* Display success message if playlist saved successfully */}
             {savedSuccessfullyMessage && <p className={styles.savedSuccessfullyMessage}>{savedSuccessfullyMessage}</p>}
-            <Track tracks={tracks} onRemoveResult={onRemoveResult} />
+            <Track playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist} />
             <form>
                 <button className={styles.saveToSpotifyButton} type='button' onClick={handleSavePlaylistToSpotify}>
                     Save Playlist
