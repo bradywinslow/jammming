@@ -22,6 +22,20 @@ function generateRandomString(length) {
     return text;
 };
 
+// Function to build authorization URL using the generated state
+function generateAuthorizationUrl(state) {
+    let url = new URL('https://accounts.spotify.com/authorize');
+    const searchParams = url.searchParams;
+    searchParams.append('client_id', clientId);
+    searchParams.append('response_type', 'token');
+    searchParams.append('redirect_uri', getRedirectUri());
+    if (state) {
+        searchParams.append('state', state);
+    }
+    searchParams.append('scope', scope);
+    return url;
+}
+
 // Function to handle login
 const handleLogin = (e) => {    
     e.preventDefault();
@@ -31,12 +45,7 @@ const handleLogin = (e) => {
     localStorage.setItem(stateKey, state);
 
     // Build the authorization URL using the generated state
-    let url = 'https://accounts.spotify.com/authorize';
-    url += '?client_id=' + encodeURIComponent(clientId);
-    url += '&response_type=token';
-    url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
-    url += '&state=' + encodeURIComponent(state);
-    url += '&scope=' + encodeURIComponent(scope);
+    const url = generateAuthorizationUrl(state);
 
     // Redirect the user to the Spotify auhorization page
     window.location.href = url;
@@ -88,11 +97,7 @@ const handleReauthorization = () => {
 
     if (expired) {
         // Define the Spotify authorization URL
-        let url = 'https://accounts.spotify.com/authorize';
-        url += '?client_id=' + encodeURIComponent(clientId);
-        url += '&response_type=token';
-        url += '&redirect_uri=' + encodeURIComponent(getRedirectUri());
-        url += '&scope=' + encodeURIComponent(scope);
+        const url = generateAuthorizationUrl();
         
         // Store the authorization URL in localStorage
         localStorage.setItem('reauth_url', url);
