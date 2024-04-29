@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from '../styles/Playlist.module.css';
 import Track from '../components/Track.jsx';
 import { addToPlaylist } from '../spotify/httpRequests.js';
 
@@ -69,10 +68,9 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
     };
     
     return (
-        <div className={styles.playlistContainer}>
-            <form className={styles.form}>
+        <div>
+            <form>
                 <input
-                    className={styles.playlistInput}
                     type='text'
                     id='playlistInput'
                     value={playlistTitle}
@@ -83,12 +81,12 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
                     autoComplete='off'
                 />
             </form>
-            {submissionErrorMessage && <p className={styles.submissionErrorMessage}>{submissionErrorMessage}</p>}
+            {submissionErrorMessage && <p>{submissionErrorMessage}</p>}
             {/* Display success message if playlist saved successfully */}
-            {savedSuccessfullyMessage && <p className={styles.savedSuccessfullyMessage}>{savedSuccessfullyMessage}</p>}
+            {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
             <Track playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist} />
             <form>
-                <button className={styles.saveToSpotifyButton} type='button' onClick={handleSavePlaylistToSpotify}>
+                <button type='button' onClick={handleSavePlaylistToSpotify}>
                     Save Playlist
                 </button>
             </form>

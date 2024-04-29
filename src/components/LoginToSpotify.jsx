@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styles from '../styles/LoginToSpotify.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { retrieveTokenFromUrlHash, handleLogin } from '../spotify/authorization.js';
@@ -14,11 +13,11 @@ export default function LoginToSpotify() {
     }, []); // Empty dependency array so effect only runs once
 
     return (
-        <div className={styles.loginToSpotifyButtonDiv}>
+        <div>
             
-            <div className={styles.loginToSpotifyButtonContainer}>
-                <button className={styles.loginToSpotifyButton} type='button' onClick={handleLogin}>
-                    Login to Spotify<FontAwesomeIcon icon={faSpotify} className={styles.faSpotify} />
+            <div>
+                <button type='button' onClick={handleLogin}>
+                    Login to Spotify<FontAwesomeIcon icon={faSpotify} />
                 </button>
             </div>
         </div>

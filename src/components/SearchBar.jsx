@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from '../styles/SearchBar.module.css';
 import { spotifySearch } from '../spotify/httpRequests.js';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,10 +37,9 @@ export default function SearchBar() {
     };
 
     return (
-        <search className={styles.searchDiv}>
-            <form className={styles.searchContainer} onKeyDown={handleKeyDown}>
+        <search>
+            <form onKeyDown={handleKeyDown}>
                 <input
-                    className={styles.searchInput}
                     type='text'
                     id='searchBar'
                     autoComplete='off'
@@ -49,7 +47,6 @@ export default function SearchBar() {
                     onChange={handleInputChange}
                 ></input>
                 <input
-                    className={styles.searchButton}
                     type='button'
                     id='searchButton'
                     value='Search'
