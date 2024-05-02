@@ -3,6 +3,7 @@ import SearchBar from '../SearchBar.jsx';
 import SearchResults from '../SearchResults.jsx';
 import Playlist from '../Playlist.jsx';
 import { useLocation } from 'react-router-dom';
+import { Flex } from '@chakra-ui/react';
 
 export default function CreatePlaylist() {
     const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -29,10 +30,10 @@ export default function CreatePlaylist() {
       };
 
     return (
-        <>
+        <Flex alignItems='center' justify='center' flexDirection='column'>
             <SearchBar />
             <SearchResults searchData={searchData} addSearchResultToPlaylist={addSearchResultToPlaylist}/>
             <Playlist playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist}/>
-        </>
+        </Flex>
     )
 }
