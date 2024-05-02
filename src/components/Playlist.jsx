@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Track from '../components/Track.jsx';
 import { addToPlaylist } from '../spotify/httpRequests.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Playlist({ playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
@@ -77,14 +78,30 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
                     onChange={handlePlaylistTitleChange}
                     onKeyDown={handleKeyDown}
                     required
-                    placeholder='Give your playlist a name'
+                    placeholder='Give playlist a name'
                     autoComplete='off'
                 />
             </form>
+            
             {submissionErrorMessage && <p>{submissionErrorMessage}</p>}
             {/* Display success message if playlist saved successfully */}
             {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
-            <Track playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist} />
+            
+            {playlistTracks.map((item) => (
+                <div key={item.id}>
+                    <img src={`${item.album.images[2].url}`} alt="album artwork" />
+                    <div>
+                        <div>
+                            <h3>{item.name}</h3>
+                            <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
+                        </div>
+                        <button onClick={() => removeSearchResultFromPlaylist(item)}>
+                            <FontAwesomeIcon icon={faMinus} />
+                        </button>
+                    </div>
+                </div>
+            ))}
+            
             <form>
                 <button type='button' onClick={handleSavePlaylistToSpotify}>
                     Save Playlist
