@@ -49,6 +49,7 @@ export default function SearchBar() {
                             variant='outline'
                             focusBorderColor='#D9D9D9'
                             maxWidth='25rem'
+                            mb={10}
                         ></Input>
                     </InputGroup>
                 </Flex>

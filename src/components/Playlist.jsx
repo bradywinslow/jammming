@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { addToPlaylist } from '../spotify/httpRequests.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import {
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
+    TableCaption,
+    Tfoot,
+    Button
+  } from '@chakra-ui/react';
 
 export default function Playlist({ playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
@@ -69,44 +81,70 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
     };
     
     return (
-        <div>
-            <form>
-                <input
-                    type='text'
-                    id='playlistInput'
-                    value={playlistTitle}
-                    onChange={handlePlaylistTitleChange}
-                    onKeyDown={handleKeyDown}
-                    required
-                    placeholder='Give playlist a name'
-                    autoComplete='off'
-                />
-            </form>
-            
+        <>
             {submissionErrorMessage && <p>{submissionErrorMessage}</p>}
             {/* Display success message if playlist saved successfully */}
             {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
             
-            {playlistTracks.map((item) => (
-                <div key={item.id}>
-                    <img src={`${item.album.images[2].url}`} alt="album artwork" />
-                    <div>
-                        <div>
-                            <h3>{item.name}</h3>
-                            <p>{`${item.artists[0].name} | ${item.album.name}`}</p>
-                        </div>
-                        <button onClick={() => removeSearchResultFromPlaylist(item)}>
-                            <FontAwesomeIcon icon={faMinus} />
-                        </button>
-                    </div>
-                </div>
-            ))}
-            
-            <form>
-                <button type='button' onClick={handleSavePlaylistToSpotify}>
-                    Save Playlist
-                </button>
-            </form>
-        </div>
+            <TableContainer bg='#FFFFFF' color='#0F062C' borderRadius={13} overflowX='auto' overflowY='auto' mb={10} px='10' pb='10'>
+                <Table variant='simple' size='sm'>
+                    <TableCaption placement='top'>
+                        <form>
+                            <input
+                                type='text'
+                                id='playlistInput'
+                                value={playlistTitle}
+                                onChange={handlePlaylistTitleChange}
+                                onKeyDown={handleKeyDown}
+                                required
+                                placeholder='Give playlist a name'
+                                autoComplete='off'
+                            />
+                        </form>
+                    </TableCaption>
+                    <Thead>
+                        <Tr>
+                            <Th>Album Artwork</Th>
+                            <Th>Artist</Th>
+                            <Th>Song</Th>
+                            <Th>Album</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                    {playlistTracks.map((item) => (
+                        <Tr key={item.id}>
+                            <Td><img src={`${item.album.images[2].url}`} alt='album artwork' /></Td>
+                            <Td>{item.name}</Td>
+                            <Td>{item.artists[0].name}</Td>
+                            <Td>{item.album.name}</Td>
+                            <Td>
+                                <button onClick={() => removeSearchResultFromPlaylist(item)}>
+                                    <FontAwesomeIcon icon={faMinus} />
+                                </button>
+                            </Td>
+                        </Tr>
+                    ))}
+                    </Tbody>
+                    <Tfoot>
+                            <Button
+                                justify='center'
+                                mt={7}
+                                bg='#1DB954'
+                                color='#191414'
+                                _hover={{
+                                    bg: '#1CB050'
+                                }}
+                                _active={{
+                                    bg: '#15843C'
+                                }}
+                                size='lg'
+                                onClick={handleSavePlaylistToSpotify}
+                            >
+                                Save Playlist
+                            </Button>
+                    </Tfoot>
+                </Table>
+            </TableContainer>
+        </>
     )
 }
