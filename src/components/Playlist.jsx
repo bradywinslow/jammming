@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { addToPlaylist } from '../spotify/httpRequests.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus } from '@fortawesome/free-solid-svg-icons';
+import { FiMinus } from "react-icons/fi";
 import {
     Table,
     Thead,
@@ -11,12 +10,15 @@ import {
     Td,
     TableContainer,
     TableCaption,
-    Tfoot,
-    Button
+    Button,
+    Icon,
+    Heading,
+    Input
   } from '@chakra-ui/react';
 
 export default function Playlist({ playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
+    // const [showPlaylistContainer, setShowPlaylistContainer] = useState();
     const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
     const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
 
@@ -86,28 +88,39 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
             {/* Display success message if playlist saved successfully */}
             {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
             
-            <TableContainer bg='#FFFFFF' color='#0F062C' borderRadius={13} overflowX='auto' overflowY='auto' mb={10} px='10' pb='10'>
+            <TableContainer
+                bg='#FFFFFF'
+                color='#0F062C'
+                borderRadius={13}
+                overflowX='auto'
+                overflowY='auto'
+                mb='10'
+                px='10'
+                pb='10'
+                w='65rem'
+                h='25rem'
+            >
                 <Table variant='simple' size='sm'>
                     <TableCaption placement='top'>
-                        <form>
-                            <input
-                                type='text'
-                                id='playlistInput'
-                                value={playlistTitle}
-                                onChange={handlePlaylistTitleChange}
-                                onKeyDown={handleKeyDown}
-                                required
-                                placeholder='Give playlist a name'
-                                autoComplete='off'
-                            />
-                        </form>
+                        <Heading as='h4' size='md' pb={2}>Playlist</Heading>
                     </TableCaption>
                     <Thead>
                         <Tr>
-                            <Th>Album Artwork</Th>
-                            <Th>Artist</Th>
-                            <Th>Song</Th>
-                            <Th>Album</Th>
+                            <Th>
+                                <Heading as='h6' size='xs'>Album Artwork</Heading>
+                            </Th>
+                            <Th>
+                                <Heading as='h6' size='xs'>Song</Heading>
+                            </Th>
+                            <Th>
+                                <Heading as='h6' size='xs'>Artist</Heading>
+                            </Th>
+                            <Th>
+                                <Heading as='h6' size='xs'>Album</Heading>
+                            </Th>
+                            <Th>
+                                <Heading as='h6' size='xs'>Remove</Heading>
+                            </Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -118,33 +131,48 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
                             <Td>{item.artists[0].name}</Td>
                             <Td>{item.album.name}</Td>
                             <Td>
-                                <button onClick={() => removeSearchResultFromPlaylist(item)}>
-                                    <FontAwesomeIcon icon={faMinus} />
-                                </button>
+                                <Button onClick={() => removeSearchResultFromPlaylist(item)}>
+                                    <Icon as={FiMinus} />
+                                </Button>
                             </Td>
                         </Tr>
                     ))}
                     </Tbody>
-                    <Tfoot>
-                            <Button
-                                justify='center'
-                                mt={7}
-                                bg='#1DB954'
-                                color='#191414'
-                                _hover={{
-                                    bg: '#1CB050'
-                                }}
-                                _active={{
-                                    bg: '#15843C'
-                                }}
-                                size='lg'
-                                onClick={handleSavePlaylistToSpotify}
-                            >
-                                Save Playlist
-                            </Button>
-                    </Tfoot>
                 </Table>
             </TableContainer>
+            <Input 
+                type='text'
+                id='playlistInput'
+                value={playlistTitle}
+                onChange={handlePlaylistTitleChange}
+                onKeyDown={handleKeyDown}
+                required
+                placeholder='Playlist name'
+                autoComplete='off'
+                size='md'
+                bg='#FFFFFF'
+                color='#0F062C'
+                variant='outline'
+                focusBorderColor='#D9D9D9'
+                w='15rem'
+                mb='5'
+            ></Input>
+            <Button
+                justify='center'
+                mt={7}
+                bg='#1DB954'
+                color='#191414'
+                _hover={{
+                    bg: '#1CB050'
+                }}
+                _active={{
+                    bg: '#15843C'
+                }}
+                size='lg'
+                onClick={handleSavePlaylistToSpotify}
+            >
+                Save Playlist
+            </Button>
         </>
     )
 }

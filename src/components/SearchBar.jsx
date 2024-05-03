@@ -48,8 +48,8 @@ export default function SearchBar() {
                             color='#0F062C'
                             variant='outline'
                             focusBorderColor='#D9D9D9'
-                            maxWidth='25rem'
-                            mb={10}
+                            w='15rem'
+                            mb='10'
                         ></Input>
                     </InputGroup>
                 </Flex>
