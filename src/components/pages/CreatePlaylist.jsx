@@ -33,7 +33,7 @@ export default function CreatePlaylist() {
         <Flex align='center' justify='center' flexDirection='column'>
             <SearchBar />
             <SearchResults searchData={searchData} addSearchResultToPlaylist={addSearchResultToPlaylist}/>
-            <Playlist playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist}/>
+            {/*<Playlist playlistTracks={playlistTracks} removeSearchResultFromPlaylist={removeSearchResultFromPlaylist}/>*/}
         </Flex>
     )
 }
