@@ -46,7 +46,7 @@ export default function LoginToSpotify() {
                         <ModalHeader>Jammming - Spotify Playlist Builder</ModalHeader>
                         <ModalBody>
                             <Text align='center' mb='1rem'>
-                                Welcome to Jammming, the application that allows you to search for songs, albums, or artists, and build and save playlists. Login to begin.
+                                Welcome to Jammming, the music application that allows you to search for songs, artists, or albums and build and save playlists. Login to begin.
                             </Text>
                         </ModalBody>
 

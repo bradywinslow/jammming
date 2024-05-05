@@ -48,8 +48,9 @@ export default function SearchBar() {
                             color='#0F062C'
                             variant='outline'
                             focusBorderColor='#D9D9D9'
-                            w='15rem'
-                            mb='10'
+                            w='19rem'
+                            mb={7}
+                            placeholder='Search by song, artist, or album'
                         ></Input>
                     </InputGroup>
                 </Flex>
