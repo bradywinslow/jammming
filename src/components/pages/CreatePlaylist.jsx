@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '../Header.jsx';
 import SearchBar from '../SearchBar.jsx';
 import SearchResults from '../SearchResults.jsx';
 import { useLocation } from 'react-router-dom';
@@ -30,6 +31,7 @@ export default function CreatePlaylist() {
 
     return (
         <Flex align='center' justify='center' flexDirection='column'>
+            <Header />
             <SearchBar />
             <SearchResults
               searchData={searchData}

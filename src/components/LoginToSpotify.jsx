@@ -43,10 +43,10 @@ export default function LoginToSpotify() {
                 <ModalOverlay />
                 <ModalContent color='#0F062C'>
                     <Flex flexDirection='column' alignItems='center' m={4}>
-                        <ModalHeader>Jammming - Spotify Playlist Builder</ModalHeader>
+                        <ModalHeader>Jammming - A Spotify Playlist Builder</ModalHeader>
                         <ModalBody>
                             <Text align='center' mb='1rem'>
-                                Welcome to Jammming, the music application that allows you to search for songs, artists, or albums and build and save playlists. Login to begin.
+                                Welcome to Jammming, a music application that allows you to search for songs, artists, or albums and build and save playlists to your Spotify account. Login to begin.
                             </Text>
                         </ModalBody>
 

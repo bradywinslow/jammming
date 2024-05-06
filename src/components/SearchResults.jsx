@@ -85,6 +85,8 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                 isClosable: true,
               });
 
+              setPlaylistTitle('');
+
               return;
         };
     };
