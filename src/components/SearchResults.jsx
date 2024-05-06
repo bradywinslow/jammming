@@ -18,15 +18,16 @@ import {
     Input,
     Flex
   } from '@chakra-ui/react';
+import { useToast } from '@chakra-ui/react'
 
 export default function SearchResults({ searchData, addSearchResultToPlaylist, playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
-    const [submissionErrorMessage, setSubmissionErrorMessage] = useState('');
-    const [savedSuccessfullyMessage, setSavedSuccessfullyMessage] = useState('');
+    
+    const toast = useToast();
     
     const handlePlaylistTitleChange = (e) => {
         setPlaylistTitle(e.target.value);
-        setSubmissionErrorMessage('');
+        return;
     };
 
     const handleKeyDown = (e) => {
@@ -38,64 +39,65 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
 
     const handleSavePlaylistToSpotify = () => {
         if (!playlistTitle && (playlistTracks.length === 0)) {
-            setSubmissionErrorMessage('Please add tracks and playlist name before saving');
-            
-            // Clear the error message after 5 seconds
-            setTimeout(() => {
-                setSubmissionErrorMessage('');
-            }, 5000);
+            toast({
+                title: 'Error',
+                description: 'Please add songs to playlist and give playlist a name before saving.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              });
 
-            return;
+              return;
         };
         
         if (playlistTracks.length === 0) {
-            setSubmissionErrorMessage('Please add tracks to playlist before saving');
-       
-            // Clear the error message after 5 seconds
-            setTimeout(() => {
-                setSubmissionErrorMessage('');
-            }, 5000);
+            toast({
+                title: 'Error',
+                description: 'Please add songs to playlist before saving.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              });
 
-            return;
+              return;
         };
         
         if (!playlistTitle) {
-            setSubmissionErrorMessage('Please add playlist name before saving');
-            
-            // Clear the error message after 5 seconds
-            setTimeout(() => {
-                setSubmissionErrorMessage('');
-            }, 5000);
+            toast({
+                title: 'Error',
+                description: 'Please give playlist a name before saving.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              });
 
-            return;
+              return;
         };
 
         // Add to playlist
         const tracksInfo = addToPlaylist(playlistTitle, playlistTracks);
         if (tracksInfo) {
-            setSavedSuccessfullyMessage(`${playlistTitle} saved successfully!`);
+            toast({
+                title: 'Success',
+                description: `The playlist '${playlistTitle}' saved to your Spotify account!`,
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+              });
 
-            // Clear message aftrer 5 seconds
-            setTimeout(() => {
-                setSavedSuccessfullyMessage('');
-            }, 5000);
-
-            return;
+              return;
         };
     };
 
     return (
         <>
-            {submissionErrorMessage && <p>{submissionErrorMessage}</p>}
-            {/* Display success message if playlist saved successfully */}
-            {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
-
             <Box
                 bg='white'
                 borderRadius={13}
                 overflowX='hidden'
                 overflowY='hidden'
                 mx='10rem'
+                maxW='90rem'
             >
                 <TableContainer
                     bg='#FFFFFF'
@@ -103,7 +105,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     overflowX='auto'
                     overflowY='auto'
                     borderRadius={13}
-                    px='5rem'
+                    px='3rem'
                     h='23rem'
                 >
                     <Table
@@ -123,13 +125,25 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                 >
                                     <Heading as='h6' size='xs'>Artwork</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Song</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Artist</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Album</Heading>
                                 </Th>
                                 <Th>
@@ -175,7 +189,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     overflowX='auto'
                     overflowY='auto'
                     borderRadius={13}
-                    px='5rem'
+                    px='3rem'
                     minH='10rem'
                     maxH='23rem'
                 >
@@ -197,13 +211,25 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                 >
                                     <Heading as='h6' size='xs'>Artwork</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Song</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Artist</Heading>
                                 </Th>
-                                <Th>
+                                <Th
+                                    overflow='hidden'
+                                    whiteSpace='nowrap'
+                                    textOverflow='ellipsis'
+                                >
                                     <Heading as='h6' size='xs'>Album</Heading>
                                 </Th>
                                 <Th>

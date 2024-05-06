@@ -13,7 +13,8 @@ import {
     Button,
     Icon,
     Heading,
-    Input
+    Input,
+    Flex
   } from '@chakra-ui/react';
 
 export default function Playlist({ playlistTracks, removeSearchResultFromPlaylist }) {
@@ -89,25 +90,32 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
             {savedSuccessfullyMessage && <p>{savedSuccessfullyMessage}</p>}
             
             <TableContainer
-                bg='#FFFFFF'
-                color='#0F062C'
-                borderRadius={13}
-                overflowX='auto'
-                overflowY='auto'
-                mb='10'
-                px='10'
-                pb='10'
-                w='65rem'
-                h='25rem'
+                    bg='#FFFFFF'
+                    color='#0F062C'
+                    overflowX='auto'
+                    overflowY='auto'
+                    borderRadius={13}
+                    px='5rem'
+                    minH='10rem'
+                    maxH='23rem'
             >
-                <Table variant='simple' size='sm'>
+                <Table
+                    variant='simple'
+                    size='sm'
+                    layout='fixed'
+                    textAlign='center'
+                >
                     <TableCaption placement='top'>
                         <Heading as='h4' size='md' pb={2}>Playlist</Heading>
                     </TableCaption>
                     <Thead>
                         <Tr>
-                            <Th>
-                                <Heading as='h6' size='xs'>Album Artwork</Heading>
+                            <Th
+                                overflow='hidden'
+                                whiteSpace='nowrap'
+                                textOverflow='ellipsis'
+                            >
+                                <Heading as='h6' size='xs'>Artwork</Heading>
                             </Th>
                             <Th>
                                 <Heading as='h6' size='xs'>Song</Heading>
@@ -127,9 +135,21 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
                     {playlistTracks.map((item) => (
                         <Tr key={item.id}>
                             <Td><img src={`${item.album.images[2].url}`} alt='album artwork' /></Td>
-                            <Td>{item.name}</Td>
-                            <Td>{item.artists[0].name}</Td>
-                            <Td>{item.album.name}</Td>
+                            <Td
+                                overflow='hidden'
+                                whiteSpace='nowrap'
+                                textOverflow='ellipsis'
+                            >{item.name}</Td>
+                            <Td
+                                overflow='hidden'
+                                whiteSpace='nowrap'
+                                textOverflow='ellipsis'
+                            >{item.artists[0].name}</Td>
+                            <Td
+                                overflow='hidden'
+                                whiteSpace='nowrap'
+                                textOverflow='ellipsis'
+                            >{item.album.name}</Td>
                             <Td>
                                 <Button onClick={() => removeSearchResultFromPlaylist(item)}>
                                     <Icon as={FiMinus} />
@@ -140,39 +160,41 @@ export default function Playlist({ playlistTracks, removeSearchResultFromPlaylis
                     </Tbody>
                 </Table>
             </TableContainer>
-            <Input 
-                type='text'
-                id='playlistInput'
-                value={playlistTitle}
-                onChange={handlePlaylistTitleChange}
-                onKeyDown={handleKeyDown}
-                required
-                placeholder='Playlist name'
-                autoComplete='off'
-                size='md'
-                bg='#FFFFFF'
-                color='#0F062C'
-                variant='outline'
-                focusBorderColor='#D9D9D9'
-                w='15rem'
-                mb='5'
-            ></Input>
-            <Button
-                justify='center'
-                mt={7}
-                bg='#1DB954'
-                color='#191414'
-                _hover={{
-                    bg: '#1CB050'
-                }}
-                _active={{
-                    bg: '#15843C'
-                }}
-                size='lg'
-                onClick={handleSavePlaylistToSpotify}
-            >
-                Save Playlist
-            </Button>
+
+            <Flex gap='10' align='center' mb='5rem'>
+                <Input 
+                    mt={7}
+                    type='text'
+                    id='playlistInput'
+                    value={playlistTitle}
+                    onChange={handlePlaylistTitleChange}
+                    onKeyDown={handleKeyDown}
+                    required
+                    placeholder='Give playlist a name'
+                    autoComplete='off'
+                    size='md'
+                    bg='#FFFFFF'
+                    color='#0F062C'
+                    variant='outline'
+                    focusBorderColor='#D9D9D9'
+                    w='15rem'
+                ></Input>
+                <Button
+                    mt={7}
+                    bg='#1DB954'
+                    color='#191414'
+                    _hover={{
+                        bg: '#1CB050'
+                    }}
+                    _active={{
+                        bg: '#15843C'
+                    }}
+                    size='lg'
+                    onClick={handleSavePlaylistToSpotify}
+                >
+                    Save Playlist
+                </Button>
+            </Flex>
         </>
     )
 }

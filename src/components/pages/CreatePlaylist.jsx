@@ -35,8 +35,7 @@ export default function CreatePlaylist() {
               searchData={searchData}
               addSearchResultToPlaylist={addSearchResultToPlaylist}
               playlistTracks={playlistTracks}
-              removeSearchResultFromPlaylist={removeSearchResultFromPlaylist}
-            />
+              removeSearchResultFromPlaylist={removeSearchResultFromPlaylist}/>
         </Flex>
     )
 }
