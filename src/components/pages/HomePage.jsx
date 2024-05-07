@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar.jsx';
 
 export default function HomePage() {
     return (
-        <Flex align='center' justify='center' flexDirection='column' h='100vh' m='auto'>
+        <Flex align='center' justify='center' flexDirection='column' h='55vh' m='auto'>
             <Header />
             <Heading as='h2' size='md' mt='-2rem' mb='10'>
                 A Spotify Playlist Builder
