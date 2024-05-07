@@ -94,10 +94,8 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
     return (
         <>
             <Box
-                bg='white'
                 borderRadius={13}
-                overflowX='hidden'
-                overflowY='hidden'
+                overflow='hidden'
                 mx='10rem'
                 maxW='90rem'
             >
@@ -115,6 +113,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         size='sm'
                         layout='fixed'
                         textAlign='center'
+                        overflowY='hidden'
                     >
                         <TableCaption placement='top'>
                             <Heading as='h4' size='md' pb={2}>Search Results</Heading>
@@ -182,9 +181,16 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         </Tbody>
                     </Table>
                 </TableContainer>
+            </Box>
                 
-                <Box border='1px' borderTop borderBottom borderColor='D9D9D9' h='5'></Box>
+                <Box bg='#0F062C' h='8'></Box>
 
+            <Box
+                borderRadius={13}
+                overflow='hidden'
+                mx='10rem'
+                maxW='90rem'
+            >    
                 <TableContainer
                     bg='#FFFFFF'
                     color='#0F062C'
