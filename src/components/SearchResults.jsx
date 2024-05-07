@@ -192,8 +192,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     overflowY='auto'
                     borderRadius={13}
                     px='3rem'
-                    minH='10rem'
-                    maxH='23rem'
+                    h='23rem'
                 >
                     <Table
                         variant='simple'
