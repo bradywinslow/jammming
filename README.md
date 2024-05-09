@@ -1,12 +1,13 @@
-# Jammming - Spotify Playlist Builder
+# Jammming - A Spotify Playlist Builder
 
 ## Website Link
-[Jammming](https://curious-salamander-cadf27.netlify.app)
+[Jammming](https://jammming-playlist-builder.netlify.app/)
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Deploy Status](#deploy-status)
 - [Getting Started](#getting-started)
 - [How to Use](#how-to-use)
 - [License](#license)
@@ -26,8 +27,12 @@ Jammming is a web application that allows users to log into their Spotify accoun
 - CSS3
 - JavaScript
 - React
+- React Router
+- Chakra UI
 - Netlify
 
+## Deploy Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4f422e86-5f00-4780-b3ca-7aa16be6b321/deploy-status)](https://app.netlify.com/sites/jammming-playlist-builder/deploys)
 ## Getting Started
 To run Jammming locally:
 
@@ -47,7 +52,7 @@ npm install
 3. Set up your Spotify API credentials:
 - Visit the [Spotify Developer Dashboard](https://developer.spotify.com).
 - Create a new application.
-- Copy your client ID and paste it in the `authorization.js' file.
+- Copy your clientId and paste it in the `authorization.js' file.
 
 4. Start the development server:
 
@@ -55,10 +60,13 @@ npm install
 npm start
 ```
 
-5. Open `http://localhost:3000` in your browser.
+5. Open `http://localhost:8080` in your browser.
 
 ## How to Use
-...
+1. Click 'Login to Spotify' and enter Spotify login credentials.
+2. Use the search bar to search for songs, artists, or albums.
+3. Click the '+' next to a song that you want to add to your playlist.
+4. Once you've added all the songs you want to your playlist, enter in a name for the playlist and click 'Save Playlist.'
 
 ## License
 This project is licensed under the [MIT License](LICENSE.md) - see the [LICENSE.md](LICENSE.md) file for details.
