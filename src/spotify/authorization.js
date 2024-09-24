@@ -96,11 +96,15 @@ const handleReauthorization = () => {
     const expired = accessToken && expirationTime && new Date().getTime() / 1000 > expirationTime;
 
     if (expired) {
-        // Define the Spotify authorization URL
-        const url = generateAuthorizationUrl();
+        // Set the state in localStorage
+        const state = generateRandomString(16);
+        localStorage.setItem(stateKey, state);
+        
+        // Build the authorization URL using the generated state
+        const url = generateAuthorizationUrl(state);
         
         // Store the authorization URL in localStorage
-        localStorage.setItem('reauth_url', url);
+        // localStorage.setItem('reauth_url', url);
 
         // Redirect the user to the Spotify authorization URL
         window.location = url;
