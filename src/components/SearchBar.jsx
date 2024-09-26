@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { spotifySearch } from '../spotify/httpRequests.js';
 import { useNavigate } from 'react-router-dom';
-import { Flex, Icon, Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
+import { Flex, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { GoSearch } from "react-icons/go";
 
 export default function SearchBar() {
@@ -31,7 +31,7 @@ export default function SearchBar() {
 
     return (
         <search>
-            <Stack onKeyDown={handleKeyDown}>
+            <Flex onKeyDown={handleKeyDown}>
                 <Flex align='center' flexDirection='column'>
                     <InputGroup>
                         <InputLeftElement pointerEvents='none'>
@@ -48,13 +48,13 @@ export default function SearchBar() {
                             color='#0F062C'
                             variant='outline'
                             focusBorderColor='#D9D9D9'
-                            w='19rem'
+                            w={[250, 300, 350]}
                             mb={7}
                             placeholder='Search by song, artist, or album'
                         ></Input>
                     </InputGroup>
                 </Flex>
-            </Stack>
+            </Flex>
         </search>
     )
 }

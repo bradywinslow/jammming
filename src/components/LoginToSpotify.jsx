@@ -41,9 +41,9 @@ export default function LoginToSpotify() {
         <>
             {!loggedIn && <Modal blockScrollOnMount={true} isOpen={isOpen} isCentered>
                 <ModalOverlay />
-                <ModalContent color='#0F062C'>
+                <ModalContent color='#0F062C' width='90%'>
                     <Flex flexDirection='column' alignItems='center' m={4}>
-                        <ModalHeader>Jammming - A Spotify Playlist Builder</ModalHeader>
+                        <ModalHeader align='center'>Jammming - A Spotify Playlist Builder</ModalHeader>
                         <ModalBody>
                             <Text align='center' mb='1rem'>
                                 Welcome to Jammming, a music application that allows you to search for songs, artists, or albums and build and save playlists to your Spotify account. Login to begin.

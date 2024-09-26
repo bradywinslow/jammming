@@ -15,13 +15,15 @@ import {
     Button,
     Icon,
     Box,
-    Input,
-    Flex
+    useToast,
+    useMediaQuery
   } from '@chakra-ui/react';
-import { useToast } from '@chakra-ui/react'
+import DesktopInputAndButton from './DesktopInputAndButton.jsx';
+import MobileInputAndButton from './MobileInputAndButton.jsx';
 
 export default function SearchResults({ searchData, addSearchResultToPlaylist, playlistTracks, removeSearchResultFromPlaylist }) {
     const [playlistTitle, setPlaylistTitle] = useState('');
+    const [isMobile] = useMediaQuery("(max-width: 48em)");
     
     const toast = useToast();
     
@@ -96,8 +98,9 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
             <Box
                 borderRadius={13}
                 overflow='hidden'
-                mx='10rem'
+                mx='2rem'
                 maxW='90rem'
+                minW='17rem'
             >
                 <TableContainer
                     bg='#FFFFFF'
@@ -188,8 +191,9 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
             <Box
                 borderRadius={13}
                 overflow='hidden'
-                mx='10rem'
+                mx='2rem'
                 maxW='90rem'
+                minW='17rem'
             >    
                 <TableContainer
                     bg='#FFFFFF'
@@ -275,40 +279,8 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                 </TableContainer>
             </Box>
 
-            <Flex gap='10' align='center' mb='5rem'>
-                <Input 
-                    mt={7}
-                    type='text'
-                    id='playlistInput'
-                    value={playlistTitle}
-                    onChange={handlePlaylistTitleChange}
-                    onKeyDown={handleKeyDown}
-                    required
-                    placeholder='Give playlist a name'
-                    autoComplete='off'
-                    size='md'
-                    bg='#FFFFFF'
-                    color='#0F062C'
-                    variant='outline'
-                    focusBorderColor='#D9D9D9'
-                    w='15rem'
-                ></Input>
-                <Button
-                    mt={7}
-                    bg='#1DB954'
-                    color='#191414'
-                    _hover={{
-                        bg: '#1CB050'
-                    }}
-                    _active={{
-                        bg: '#15843C'
-                    }}
-                    size='lg'
-                    onClick={handleSavePlaylistToSpotify}
-                >
-                    Save Playlist
-                </Button>
-            </Flex>
+            {/* Conditionally render MobileInputAndButton or DesktopInputAndButton */}
+            {isMobile ? <MobileInputAndButton playlistTitle={playlistTitle} handlePlaylistTitleChange={handlePlaylistTitleChange} handleKeyDown={handleKeyDown} handleSavePlaylistToSpotify={handleSavePlaylistToSpotify}/> : <DesktopInputAndButton playlistTitle={playlistTitle} handlePlaylistTitleChange={handlePlaylistTitleChange} handleKeyDown={handleKeyDown} handleSavePlaylistToSpotify={handleSavePlaylistToSpotify}/>}
         </>
     );
 }
