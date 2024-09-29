@@ -3,6 +3,7 @@ import { addToPlaylist } from '../spotify/httpRequests.js';
 import { FiPlus } from "react-icons/fi";
 import { FiMinus } from "react-icons/fi";
 import {
+    Flex,
     Table,
     Thead,
     Tbody,
@@ -10,7 +11,6 @@ import {
     Th,
     Td,
     TableContainer,
-    TableCaption,
     Heading,
     Button,
     Icon,
@@ -97,37 +97,55 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
         <>
             <Box
                 borderRadius={13}
-                overflow='hidden'
                 mx='2rem'
-                maxW='90rem'
-                minW='17rem'
+                h="full"
+                spacing={0}
+                w="full"
             >
+                <Heading
+                    as='h4'
+                    size='md'
+                    pt={3}
+                    h='3rem'
+                    textAlign='center'
+                    bg='#FFFFFF'
+                    color='#0F062C'
+                    borderTopRadius={13} 
+                >Search Results</Heading>
+
                 <TableContainer
                     bg='#FFFFFF'
                     color='#0F062C'
-                    overflowX='auto'
-                    overflowY='auto'
-                    borderRadius={13}
-                    px='3rem'
+                    overflowY='scroll'
+                    borderBottomRadius={13}
                     h='23rem'
+                    display='block'
+                    flexGrow={1}
+                    borderWidth={1}
+                    p={0}
+                    w="full"
                 >
                     <Table
                         variant='simple'
                         size='sm'
-                        layout='fixed'
                         textAlign='center'
-                        overflowY='hidden'
+                        overflowY='auto'
+                        overflowX='auto'
+                        layout='fixed'
+                        h="full"
+                        minW="53.125rem"
+                        w="full"
                     >
-                        <TableCaption placement='top'>
-                            <Heading as='h4' size='md' pb={2}>Search Results</Heading>
-                        </TableCaption>
                         <Thead>
                             <Tr>
                                 <Th overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    w='6rem'
                                 >
-                                    <Heading as='h6' size='xs'>Artwork</Heading>
+                                    <Flex justify='center'>
+                                        <Heading as='h6' size='xs'>Artwork</Heading>
+                                    </Flex>
                                 </Th>
                                 <Th
                                     overflow='hidden'
@@ -150,15 +168,20 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                 >
                                     <Heading as='h6' size='xs'>Album</Heading>
                                 </Th>
-                                <Th>
-                                    <Heading as='h6' size='xs'>Add</Heading>
+                                <Th w='6rem'>
+                                    <Flex justify='center'>
+                                        <Heading as='h6' size='xs'>Add</Heading>
+                                    </Flex>
                                 </Th>
                             </Tr>
                         </Thead>
+                        
                         <Tbody>
                         {searchData.map((result) => (
                             <Tr key={result.id}>
-                                <Td><img src={`${result.album.images[2].url}`} alt='album artwork' /></Td>
+                                <Flex justify='center'>
+                                    <Td><img src={`${result.album.images[2].url}`} alt='album artwork' /></Td>
+                                </Flex>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
@@ -175,9 +198,11 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                     textOverflow='ellipsis'
                                 >{result.album.name}</Td>
                                 <Td>
-                                    <Button onClick={() => addSearchResultToPlaylist(result)}>
-                                        <Icon as={FiPlus} />
-                                    </Button>
+                                    <Flex justify='center'>
+                                        <Button onClick={() => addSearchResultToPlaylist(result)}>
+                                            <Icon as={FiPlus} />
+                                        </Button>
+                                    </Flex>
                                 </Td>
                             </Tr>
                         ))}
@@ -188,39 +213,58 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                 
                 <Box bg='#0F062C' h='8'></Box>
 
-            <Box
+                <Box
                 borderRadius={13}
-                overflow='hidden'
                 mx='2rem'
-                maxW='90rem'
-                minW='17rem'
-            >    
+                h="full"
+                spacing={0}
+                w="full"
+            >
+                <Heading
+                    as='h4'
+                    size='md'
+                    pt={3}
+                    h='3rem'
+                    textAlign='center'
+                    bg='#FFFFFF'
+                    color='#0F062C'
+                    borderTopRadius={13}    
+                >Playlist</Heading>
+
                 <TableContainer
                     bg='#FFFFFF'
                     color='#0F062C'
-                    overflowX='auto'
-                    overflowY='auto'
-                    borderRadius={13}
-                    px='3rem'
+                    overflowY='scroll'
+                    borderBottomRadius={13}
                     h='23rem'
+                    display='block'
+                    flexGrow={1}
+                    borderWidth={1}
+                    p={0}
+                    w="full"
                 >
                     <Table
                         variant='simple'
                         size='sm'
-                        layout='fixed'
                         textAlign='center'
+                        overflowY='auto'
+                        overflowX='auto'
+                        layout='fixed'
+                        h="full"
+                        minW="53.125rem"
+                        w="full"
                     >
-                        <TableCaption placement='top'>
-                            <Heading as='h4' size='md' pb={2}>Playlist</Heading>
-                        </TableCaption>
                         <Thead>
                             <Tr>
                                 <Th
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    w='6rem'
                                 >
-                                    <Heading as='h6' size='xs'>Artwork</Heading>
+                                    <Flex justify='center'>
+                                        <Heading as='h6' size='xs'>Artwork</Heading>
+                                    </Flex>
                                 </Th>
                                 <Th
                                     overflow='hidden'
@@ -243,15 +287,19 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                 >
                                     <Heading as='h6' size='xs'>Album</Heading>
                                 </Th>
-                                <Th>
-                                    <Heading as='h6' size='xs'>Remove</Heading>
+                                <Th w='6rem'>
+                                    <Flex justify='center'>
+                                        <Heading as='h6' size='xs'>Remove</Heading>
+                                    </Flex>
                                 </Th>
                             </Tr>
                         </Thead>
                         <Tbody>
                         {playlistTracks.map((item) => (
                             <Tr key={item.id}>
-                                <Td><img src={`${item.album.images[2].url}`} alt='album artwork' /></Td>
+                                <Flex justify='center'>
+                                    <Td><img src={`${item.album.images[2].url}`} alt='album artwork' /></Td>
+                                </Flex> 
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
@@ -268,9 +316,11 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                     textOverflow='ellipsis'
                                 >{item.album.name}</Td>
                                 <Td>
-                                    <Button onClick={() => removeSearchResultFromPlaylist(item)}>
-                                        <Icon as={FiMinus} />
-                                    </Button>
+                                    <Flex justify='center'>
+                                        <Button onClick={() => removeSearchResultFromPlaylist(item)}>
+                                            <Icon as={FiMinus}/>
+                                        </Button>
+                                    </Flex>
                                 </Td>
                             </Tr>
                         ))}
