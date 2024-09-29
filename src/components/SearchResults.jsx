@@ -186,16 +186,19 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={result.name}
                                 >{result.name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={result.artists[0].name}
                                 >{result.artists[0].name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={result.album.name}
                                 >{result.album.name}</Td>
                                 <Td>
                                     <Flex justify='center'>
@@ -304,16 +307,19 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={item.name}
                                 >{item.name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={item.artists[0].name}
                                 >{item.artists[0].name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
+                                    title={item.album.name}
                                 >{item.album.name}</Td>
                                 <Td>
                                     <Flex justify='center'>
