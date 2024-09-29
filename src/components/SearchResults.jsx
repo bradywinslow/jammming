@@ -95,6 +95,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
 
     return (
         <>
+            {/* Search results table */}
             <Box
                 borderRadius={13}
                 mx='2rem'
@@ -132,7 +133,6 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         overflowY='auto'
                         overflowX='auto'
                         layout='fixed'
-                        h="full"
                         minW="53.125rem"
                         w="full"
                     >
@@ -214,9 +214,10 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                 </TableContainer>
             </Box>
                 
-                <Box bg='#0F062C' h='8'></Box>
+            <Box bg='#0F062C' h='8'></Box>
 
-                <Box
+            {/* Playlist table */}
+            <Box
                 borderRadius={13}
                 mx='2rem'
                 h="full"
@@ -253,7 +254,6 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         overflowY='auto'
                         overflowX='auto'
                         layout='fixed'
-                        h="full"
                         minW="53.125rem"
                         w="full"
                     >
@@ -298,32 +298,32 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                             </Tr>
                         </Thead>
                         <Tbody>
-                        {playlistTracks.map((item) => (
-                            <Tr key={item.id}>
+                        {playlistTracks.map((result) => (
+                            <Tr key={result.id}>
                                 <Flex justify='center'>
-                                    <Td><img src={`${item.album.images[2].url}`} alt='album artwork' /></Td>
+                                    <Td><img src={`${result.album.images[2].url}`} alt='album artwork' /></Td>
                                 </Flex> 
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
-                                    title={item.name}
-                                >{item.name}</Td>
+                                    title={result.name}
+                                >{result.name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
-                                    title={item.artists[0].name}
-                                >{item.artists[0].name}</Td>
+                                    title={result.artists[0].name}
+                                >{result.artists[0].name}</Td>
                                 <Td
                                     overflow='hidden'
                                     whiteSpace='nowrap'
                                     textOverflow='ellipsis'
-                                    title={item.album.name}
-                                >{item.album.name}</Td>
+                                    title={result.album.name}
+                                >{result.album.name}</Td>
                                 <Td>
                                     <Flex justify='center'>
-                                        <Button onClick={() => removeSearchResultFromPlaylist(item)}>
+                                        <Button onClick={() => removeSearchResultFromPlaylist(result)}>
                                             <Icon as={FiMinus}/>
                                         </Button>
                                     </Flex>
