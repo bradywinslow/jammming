@@ -118,7 +118,6 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     bg='#FFFFFF'
                     color='#0F062C'
                     overflowY='scroll'
-                    borderBottomRadius={13}
                     h='23rem'
                     display='block'
                     flexGrow={1}
@@ -212,6 +211,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         </Tbody>
                     </Table>
                 </TableContainer>
+                <Box bg='#FFFFFF' h='1rem' borderBottomRadius={13}></Box>
             </Box>
                 
             <Box bg='#0F062C' h='8'></Box>
@@ -239,7 +239,6 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     bg='#FFFFFF'
                     color='#0F062C'
                     overflowY='scroll'
-                    borderBottomRadius={13}
                     h='23rem'
                     display='block'
                     flexGrow={1}
@@ -333,6 +332,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                         </Tbody>
                     </Table>
                 </TableContainer>
+                <Box bg='#FFFFFF' h='1rem' borderBottomRadius={13}></Box>
             </Box>
 
             {/* Conditionally render MobileInputAndButton or DesktopInputAndButton */}
