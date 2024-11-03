@@ -15,6 +15,8 @@
 
 ## Introdution
 Jammming is a web application that allows users to log into their Spotify account, search for songs, albums, or artists, and create personalized playlists. With Jammming, you can easily add or remove tracks to a playlist, and save it to your Spotify account for future enjoyment.
+- Video demo:  
+[![Video demo](https://img.youtube.com/vi/WSdDwcX9JZQ/0.jpg)](https://www.youtube.com/watch?v=WSdDwcX9JZQ)
 
 ## Features
 - **Spotify Integration:** Log in with your Spotify account to search the Spotify catalog to build and save playlists.
