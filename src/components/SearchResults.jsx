@@ -246,6 +246,7 @@ export default function SearchResults({ searchData, addSearchResultToPlaylist, p
                     borderWidth={1}
                     p={0}
                     w="full"
+                    overscrollBehavior='none'
                 >
                     <Table
                         variant='simple'
