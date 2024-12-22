@@ -1,4 +1,4 @@
-import Root from './components/Root.jsx';
+import Root from './layouts/Root.jsx';
 import PageNotFound from './components/pages/PageNotFound.jsx';
 import HomePage from './components/pages/HomePage.jsx';
 import CreatePlaylist from './components/pages/CreatePlaylist.jsx';
