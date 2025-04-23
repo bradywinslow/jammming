@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaSpotify } from "react-icons/fa";
-import { retrieveTokenFromUrlHash, handleLogin } from '../spotify/authorization.js';
+import { handlePkceLogin, exchangeAuthCodeForToken } from '../spotify/pkceAuthorization.js';
 import {
     Modal,
     ModalOverlay,
@@ -18,28 +18,41 @@ import {
 export default function LoginToSpotify() {    
     const { isOpen } = useDisclosure({ defaultIsOpen: true });
 
-    const [loggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAuthenticating, setIsAuthenticating] = useState(true);
 
     useEffect(() => {
-        // Check if the hash contains access_token, indicating successful login
-        if (window.location.hash.includes('access_token')) {
-            // Call authorization function
-            retrieveTokenFromUrlHash();
-            setIsLoggedIn(true);
-            // Store in local storage that the user is logged in
-            localStorage.setItem('isLoggedIn', 'true');
-        } else {
-            // Check if the user is already logged in from previous session --> this make sure that the modal won't appear if the back button is user or if the page is refreshed
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (isLoggedIn === 'true') {
+        const handleLogin = async () => {
+            // Redirect user back to the specified redirect_uri after login
+            const urlParams = new URLSearchParams(window.location.search);
+            let code = urlParams.get('code');
+
+            // Exchange authorization code for an access token
+            if (code) {
+                await exchangeAuthCodeForToken(code);
+                window.history.replaceState({}, document.title, '/');
+            };
+
+            let accessToken = localStorage.getItem('access_token');
+            let refreshToken = localStorage.getItem('refresh_token');
+            
+            if (accessToken && refreshToken) {
                 setIsLoggedIn(true);
+                localStorage.setItem('isLoggedIn', 'true');
             }
+            setIsAuthenticating(false);
         }
-    }, []); // Empty dependency array so effect only runs once
+
+        handleLogin();
+    }, []);
+
+    if (isAuthenticating) {
+        return null;
+    }
 
     return (
         <>
-            {!loggedIn && <Modal blockScrollOnMount={true} isOpen={isOpen} isCentered>
+            {!isLoggedIn && <Modal blockScrollOnMount={true} isOpen={isOpen} isCentered>
                 <ModalOverlay />
                 <ModalContent color='#0F062C' width='90%'>
                     <Flex flexDirection='column' alignItems='center' m={4}>
@@ -63,7 +76,7 @@ export default function LoginToSpotify() {
                                 }}
                                 mr={3}
                                 size='lg'
-                                onClick={handleLogin}
+                                onClick={handlePkceLogin}
                             >
                                 Login to Spotify <Icon as={FaSpotify} ml={1} boxSize='1.25rem'/>
                             </Button>
