@@ -1,5 +1,3 @@
-import { handleReauthorization } from "./authorization.js";
-
 // Search Spotify
 const spotifySearch = async (searchInput) => {
     let accessToken = localStorage.getItem('access_token');
@@ -8,7 +6,7 @@ const spotifySearch = async (searchInput) => {
 
     try {
         // Check for token expiration before making the API call
-        handleReauthorization();
+        // handleReauthorization();
       
         const response = await fetch(urlToFetch, {
             method: 'GET',
@@ -38,7 +36,7 @@ const obtainUserId = async () => {
         const urlToFetch = 'https://api.spotify.com/v1/me';
 
         // Check for token expiration before making the API call
-        handleReauthorization();
+        // handleReauthorization();
 
         const response = await fetch(urlToFetch, {
             method: 'GET',
@@ -70,7 +68,7 @@ const createPlaylist = async (playlistTitle) => {
         const userId = await obtainUserId();
     
         // Check for token expiration before making the API call
-        handleReauthorization();
+        // handleReauthorization();
 
         const urlToFetch = `https://api.spotify.com/v1/users/${userId}/playlists`;
 
