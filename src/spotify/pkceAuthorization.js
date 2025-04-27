@@ -81,13 +81,23 @@ const exchangeAuthCodeForToken = async code => {
 
   const body = await fetch(url, payload);
   const response = await body.json();
-
+  
   if (response.access_token) {
     localStorage.setItem('access_token', response.access_token);
   };
   if (response.refresh_token) {
     localStorage.setItem('refresh_token', response.refresh_token);
   };
+  if (response.expires_in) {
+    localStorage.setItem('expires_in', response.expires_in);
+  }
+
+  // Determine expiration time for when access_token will expire
+  const now = new Date().getTime() / 1000; // current time in seconds
+  const expiresIn = response.expires_in;
+  const expirationTime = now + expiresIn;
+
+  localStorage.setItem('expiration_time', expirationTime);
 };
 
 // Function to get refresh token
