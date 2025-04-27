@@ -94,10 +94,14 @@ const exchangeAuthCodeForToken = async code => {
 
   // Determine expiration time for when access_token will expire
   const now = new Date().getTime() / 1000; // current time in seconds
-  const expiresIn = response.expires_in;
-  const expirationTime = now + expiresIn;
-
-  localStorage.setItem('expiration_time', expirationTime);
+  const expiresIn = Number(response.expires_in);
+  
+  if (!isNaN(expiresIn)) {
+    const expirationTime = now + expiresIn;
+    localStorage.setItem('expiration_time', expirationTime);
+  } else {
+    console.error('expires_in is not a valid number:', response.expires_in);
+  }
 };
 
 // Function to get refresh token
