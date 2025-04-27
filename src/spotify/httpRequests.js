@@ -1,3 +1,16 @@
+import { refreshAccessToken } from '../spotify/pkceAuthorization.js';
+
+// Check whether access token has or is about to expire; if so, refresh it
+const maybeRefreshAccessToken = async () => {
+    const expirationTime = localStorage.getItem('expiration_time');
+    const now = new Date().getTime() / 1000; // current time in seconds
+
+    if (expirationTime && now >= expirationTime - 300) {
+        console.log('Access token expired or about to expire, refreshing...');
+        await refreshAccessToken();
+    }
+};
+
 // Search Spotify
 const spotifySearch = async (searchInput) => {
     let accessToken = localStorage.getItem('access_token');
@@ -6,7 +19,7 @@ const spotifySearch = async (searchInput) => {
 
     try {
         // Check for token expiration before making the API call
-        // handleReauthorization();
+        await maybeRefreshAccessToken();
       
         const response = await fetch(urlToFetch, {
             method: 'GET',
@@ -36,7 +49,7 @@ const obtainUserId = async () => {
         const urlToFetch = 'https://api.spotify.com/v1/me';
 
         // Check for token expiration before making the API call
-        // handleReauthorization();
+        await maybeRefreshAccessToken();
 
         const response = await fetch(urlToFetch, {
             method: 'GET',
@@ -68,7 +81,7 @@ const createPlaylist = async (playlistTitle) => {
         const userId = await obtainUserId();
     
         // Check for token expiration before making the API call
-        // handleReauthorization();
+        await maybeRefreshAccessToken();
 
         const urlToFetch = `https://api.spotify.com/v1/users/${userId}/playlists`;
 
@@ -104,6 +117,9 @@ const createPlaylist = async (playlistTitle) => {
 // Add to playlist
 const addToPlaylist = async (playlistTitle, tracks) => {
     try {
+        // Check for token expiration before making the API call
+        await maybeRefreshAccessToken();
+        
         let accessToken = localStorage.getItem('access_token');
         const playlistId = await createPlaylist(playlistTitle);
         const urlToFetch = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
