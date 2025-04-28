@@ -31,7 +31,7 @@ export default function CreatePlaylist() {
 
     return (
         <Flex align='center' justify='center' flexDirection='column' mx='25px'>
-            <Flex mt='3rem'>
+            <Flex mt='7rem'>
               <Header />
             </Flex>
             <SearchBar />

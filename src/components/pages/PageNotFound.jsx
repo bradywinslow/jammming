@@ -13,7 +13,9 @@ export default function PageNotFound() {
     
     return (
         <Flex flexDirection='column' justify='center' align='center'>
-            <Header />
+            <Flex mt='7rem'>
+                <Header />
+            </Flex>
             <Flex
                 bg='#FFFFFF'
                 color='#0F062C'
