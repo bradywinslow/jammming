@@ -8,11 +8,19 @@ import {
   Route,
   RouterProvider
 } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={ <Root /> }>
     <Route index element={ <HomePage /> } />
-    <Route path='create-playlist' element={ <CreatePlaylist /> } />
+    <Route
+      path='create-playlist'
+      element={ 
+        <ProtectedRoute>
+          <CreatePlaylist />
+        </ProtectedRoute>
+      }
+    />
     <Route path='*' element={ <PageNotFound /> } />
   </Route>
 ));
