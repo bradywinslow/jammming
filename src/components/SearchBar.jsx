@@ -10,9 +10,10 @@ export default function SearchBar() {
     const navigate = useNavigate();
   
     const handleSpotifySearch = async (searchInput) => {
-      const searchData = await spotifySearch(searchInput);
+        const searchData = await spotifySearch(searchInput);
+        const searchParams = searchInput.trim();
 
-      navigate('/create-playlist', { state: searchData });
+        navigate(`/create-playlist?q=${encodeURIComponent(searchParams)}`, { state: searchData });
     };
 
     const handleInputChange = (e) => {
