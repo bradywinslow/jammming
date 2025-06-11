@@ -25,8 +25,6 @@ Jammming is a web application that allows users to log into their Spotify accoun
 - **Save to Spotify:** Save your curated playlist directly to your Spotify account.
 
 ## Technologies Used
-- HTML5
-- CSS3
 - JavaScript
 - React
 - React Router
