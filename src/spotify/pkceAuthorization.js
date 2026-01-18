@@ -3,10 +3,10 @@
 // Spotify application details
 const clientId = 'c73c8dd43ae64b7c82a1e3b355cda443';
 const getRedirectUri = () => {
-    const origin = window.origin;
-    if (origin.includes('localhost')) {
+    const origin = window.location.origin;
+    /* if (origin.includes('localhost')) {
         return 'http://localhost:8080';
-    }
+    } */
     return origin;
 };
 const redirectUri = getRedirectUri();
